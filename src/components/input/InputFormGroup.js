@@ -8,22 +8,16 @@ class InputFormGroup extends Component{
     }
 
     renderLabel(){
-        if(this.props.label == "" || this.props.label == null){
-            return ""
-        }
-        else{
+        
             return <label className={this.props.labelClassName}>{this.props.label}</label>
-        }
+        
         
     }
 
     renderInputText(){
-        if(this.props.isReadOnly == true){
-            return <input type="text" className={this.props.inputClassName} placeholder={this.props.placeholder} defaultValue={this.props.value} readOnly/>
-        }
-        else{
+        
             return <InputText className={this.props.inputClassName} onChange={this.props.onChange} placeholder={this.props.placeholder} value={this.props.value} ref={this.props.ref}/>
-        }
+        
     }
 
 

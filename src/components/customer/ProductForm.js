@@ -1,75 +1,91 @@
-import React, {Component} from "react";
+import React, {useRef,useState} from "react";
 import AnchorTag from "../../components/Anchortag";
 import InputFormGroup from "../input/InputFormGroup";
 import TextAreaFormGroup from "../input/TextAreaFormGroup";
 import SelectFormGroup from "../input/SelectFormGroup";
+import { useLiveQuery } from "dexie-react-hooks";
+import {db} from "../../data/db";
 
 
-class ProductForm extends Component{
-    constructor(props){
-        super(props);
-        this.productCategory = [
-            {
-                "id": 1,
-                "name": "Computer Accessories"
-            },
-            {
-                "id": 2,
-                "name": "Kitchen & Dining"
-            },
-            {
-                "id": 2,
-                "name": "Watch & Sunglasses"
-            }
-        ]
+const ProductForm =()=>{
+    
+    const [status, setStatus] = useState("");
+
+    const name=useRef();
+    const category=useRef();
+    const price=useRef();
+    const stock=useRef();
+
+  
+    const excategories = useLiveQuery(
+        () => db.categories.toArray()
+      );
+     let productCategory=[];
+    const addProduct=async ([name,category_name,price,total_count])=>{
+
+        try {
+
+            // Add the new friend!
+            const id = await db.products.add({
+              name,
+              category_name,
+              price,
+              total_count
+            });
+      
+            setStatus(`Product ${name} successfully added. Got id ${id}`);
+           
+          } catch (error) {
+            setStatus(`Failed to add ${name}: ${error}`);
+          }
     }
 
 
-    render(){
+     if (!excategories) return null;
         return (
-            <div className="admin-content mx-auto">
+            <div className="create-product-page page">
                 <div className="w-100 mb-5">
                     <AnchorTag link="/app/shop/product/list" className="btn btn-primary float-right" itemValue="Back to Product List"></AnchorTag>
                     <h4>Create Product</h4>
                 </div>
-                <div className="w-75">
+                <div className="w-80">
                     <form>
                         <div className="container-fluid">
-                            <div className="row">
-                                <div className="col-12">
-                                    <InputFormGroup labelClassName="mb-2" inputClassName="form-control" label="Name"/>
-                                </div>
-                                <div className="col-12">
-                                    <TextAreaFormGroup label="Description"/>
-                                </div>
-                                <div className="col-6">
-                                    <SelectFormGroup labelClassName="mb-2" label="Role" selectClassName="custom-select my-1 mr-sm-2" selectData={this.productCategory}/>
-                                </div>
-                                
-                                <div className="col-6">
-                                    <InputFormGroup labelClassName="mb-2" label="Product Price"/>
-                                </div>
-                                <div className="col-6">
-                                    <InputFormGroup labelClassName="mb-2" label="Selling Price"/>
-                                </div>
-                                <div className="col-6">
-                                    <InputFormGroup labelClassName="mb-2" label="Stock Amount"/>
-                                </div>
-
-                                <div className="col-12">
-                                    <div className="form-group form-check">
-                                        <input type="checkbox" className="form-check-input" id="publicOnCreation"/>
-                                        <label className="form-check-label" for="publicOnCreation">Make public on creation</label>
+                           <div className="form-group col-12">
+                                    <label  className="col-sm-2 col-form-label">Name</label>
+                                    <div className="">
+                                        <input type="text"  className="form-control" id="categoryNmae" placeholder="product name" ref={name}/>
                                     </div>
+                            </div>
+                            <div className="row container-fluid">
+                                <div className="form-group  col-6">
+                                        <label  className="">Price</label>
+                                        <div className="">
+                                            <input type="text"  className="form-control" id="categoryNmae" placeholder="product price" ref={price}/>
+                                        </div>
                                 </div>
-
-                                <div className="col-12 mt-3">
-                                    <div className="form-group">
-                                        <AnchorTag className="btn btn-warning" itemValue="Back" link="/app/shop/product/list"/>
-                                        <input type="submit" className="btn btn-success ml-3" value="Submit"/>
-                                    </div>
+                                <div className="form-group  col-6">
+                                        <label  className="">Total stock</label>
+                                        <div className="">
+                                            <input type="text"  className="form-control" id="categoryNmae" placeholder="total stock" ref={stock}/>
+                                        </div>
                                 </div>
                             </div>
+                            <div className="row selection container-fluid m-1">
+                                <select  id="selection " className="col-4" ref={category}>
+                                    <option>Choose...</option>
+                                    {
+                                    excategories.map((data, index) => {
+                                            return <option value={data.id} key={index}>{data.name}</option>
+                                        })
+                                    }
+                                </select>
+                            </div>
+                            <div className="row m-3">
+                                    <button type="button" className="btn btn-secondary col-3" >Cancel</button>
+                                    <button type="button" className="btn btn-primary ml-4 col-3" onClick={()=>
+                                        addProduct(name.current.value,category.current.value,price.current.value,stock.current.value)} >Submit</button>
+                                </div>
                         </div>
                         
                     </form>
@@ -78,6 +94,6 @@ class ProductForm extends Component{
             </div>
         ) 
     }
-}
+
 
 export default ProductForm;

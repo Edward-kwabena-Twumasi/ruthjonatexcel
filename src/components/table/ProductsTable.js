@@ -7,26 +7,28 @@ import {db} from "../../data/db";
 
 
 
-const Table=(props)=>{
+const ProductsTable=(props)=>{
     
-    const excategories = useLiveQuery(
-        () => db.categories.toArray()
+    
+      const exproducts = useLiveQuery(
+        () => db.products.toArray()
       );
       
+     
 
       const remove=(index)=>{
-      db.excategories.where("id").equals(index).delete();
+      db.exproducts.where("id").equals(index).delete();
       console.log(index);
       }
 
-      if (!excategories) return null;
+      if (!exproducts) return null;
         return (
             <table className={props.className} >
                 <TableHead columnList={props.columnList}></TableHead>
                 <tbody>
                     {
                         
-                       excategories.map((data, index) => {
+                       exproducts.map((data, index) => {
                             return (
                             <tr key={index} className="table-row" >
                                 {
@@ -59,4 +61,4 @@ const Table=(props)=>{
 //     allowAction: true
 // }
 
-export default Table;
+export default ProductsTable;

@@ -1,8 +1,6 @@
 import React, {Component} from "react";
 import Table from "../../components/table/Table";
 import { useState,useReducer,useRef } from "react";
-import { useLiveQuery } from "dexie-react-hooks";
-
 import {db} from "../../data/db";
 
 
@@ -12,12 +10,7 @@ const ProductCategoryList =()=>{
    
     
     const  columnList = ["ID", "Name", "Total Product", "Action"];
-    let  tableData = [
-            {"id": 1, "name": "Electronic Accessories", "total_products": "12"},
-            {"id": 2, "name": "Clothing", "total_products": "30"},
-            {"id": 3, "name": "Health & Beauty", "total_products": "30"},
-            {"id": 4, "name": "Home & Lifestyle", "total_products": "30"}
-        ]
+
      
     
     const [status, setStatus] = useState("");
@@ -39,9 +32,6 @@ const ProductCategoryList =()=>{
           }
     }
     
-
-
-
    
         return (
             <div className="category-list-page page">
@@ -51,29 +41,29 @@ const ProductCategoryList =()=>{
                     {/* <AnchorTag link="/app/shop/product-category/create" className="btn btn-warning " itemValue="Add Category"></AnchorTag> */}
                 </div>
                 <h5>{status}</h5>
-                <Table className="table table-striped" columnList={columnList}  actionLinkPrefix="" ></Table>
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
+                <Table className="table table-striped" columnList={columnList}  actionLinkPrefix="" data="categories"></Table>
+                    <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div className="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLongTitle">New category</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">
+                                <div className="modal-body">
                                     <form>
-                                        <div class="form-group row">
-                                            <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
-                                            <div class="col-sm-10">
-                                              <input type="text" readonly class="form-control" id="categoryNmae" placeholder="Oils" ref={categoryName}/>
+                                        <div className="form-group row">
+                                            <label  className="col-sm-2 col-form-label">Name</label>
+                                            <div className="col-sm-10">
+                                              <input type="text"  className="form-control" id="categoryNmae" placeholder="Oils" ref={categoryName}/>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" onClick={()=>addCategory([categoryName.current.value,"0"])} >Submit</button>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" className="btn btn-primary" onClick={()=>addCategory([categoryName.current.value,"0"])} >Submit</button>
                                 </div>
                             </div>
                         </div>
