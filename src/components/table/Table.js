@@ -1,36 +1,46 @@
 import React, {Component} from "react";
 import TableHead from "./TableHead";
 import TdTag from "./TdTag"
+import { Button } from "bootstrap";
+import { useLiveQuery } from "dexie-react-hooks";
+import {db} from "../../data/db";
 
 
-class Table extends Component{
-    constructor(props){
-        super(props);
-    }
 
-    renderAction(data){
-        if(this.props.allowAction){
-            return <TdTag value={data["id"]} isLinked="true" linkPrefix={this.props.actionLinkPrefix}></TdTag>
-        }
-    }
+const Table=(props)=>{
+   
+    const excategories = useLiveQuery(
+        () => db.categories.toArray()
+      );
 
-
-    render(){
+      const remove=(index)=>{
+      db.categories.where("id").equals(index).delete();
+      console.log(index);
+      }
+      if (!excategories) return null;
         return (
-            <table className={this.props.className}>
-                <TableHead columnList={this.props.columnList}></TableHead>
+            <table className={props.className} >
+                <TableHead columnList={props.columnList}></TableHead>
                 <tbody>
                     {
-                        this.props.tableData.map((data, index) => {
+                        
+                       excategories.map((data, index) => {
                             return (
-                            <tr key={index}>
+                            <tr key={index} className="table-row" >
                                 {
-                                    Object.keys(data).map((key, index) => {
-                                        return <TdTag key={index} value={data[key]} isLinked="false"></TdTag>
+                                    [Object.keys(data).pop()].concat(Object.keys(data).slice(0,2)).map((key, index) => {
+
+                                        return <TdTag key={index} value={data[key]} isAction="false"></TdTag>
                                     })
                                 }
+                                <td scope="col" className="row">
+                                    <h5>Edit</h5>
+                                    <h5>view</h5>
+                                    <h5 onClick={()=>remove(data["id"])}>Remove</h5>
+                                    </td>
+                                
 
-                                {this.renderAction(data)}
+                                {/* {renderAction(data)} */}
                                 
                                 
                             </tr>
@@ -40,11 +50,11 @@ class Table extends Component{
                 </tbody>
             </table>
         ) 
-    }
+    
 }
 
-Table.defaultProps = {
-    allowAction: true
-}
+// Table.defaultProps = {
+//     allowAction: true
+// }
 
 export default Table;

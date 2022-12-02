@@ -10,7 +10,7 @@ class TableHead extends Component{
 
     render(){
         return (
-            <thead>
+            <thead className="table-head">
                 <tr>
                     {
                         this.props.columnList.map((value, index) => {

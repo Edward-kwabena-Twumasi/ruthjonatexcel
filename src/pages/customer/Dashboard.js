@@ -10,29 +10,35 @@ class DashboardPage extends Component{
 
     render(){
         return (
-            <div className="admin-content mx-auto">
-                <PageHeader headerText="Welcome to Dashboard"/>
-                <div className="w-75">
-                    <div className="container-fluid">
-                        <div className="row">
-                            <div className="col-4">
-                                <div className="dash-summary-cell">
-                                    <p><b>Total Products</b></p>
-                                    <p>1200</p>
+            <div className="dash-page page">
+                <div className="">
+                    <h3 className="ml-3 page-title">Dashboard</h3>
+
+                    <div className="container-fluid dash-body">
+                        <h4>summary</h4>
+                        <div className="row summary">
+                            <div className="col-4 ">
+                                <div className="dash-summary-cell card">
+                                    <p><b>All Products</b></p>
+                                    <p>500</p>
                                 </div>
                             </div>
-                            <div className="col-4">
-                                <div className="dash-summary-cell">
-                                    <p><b>Total Invoices</b></p>
-                                    <p>3400</p>
+                            <div className="col-4 ">
+                                <div className="dash-summary-cell card">
+                                    <p><b>All Categories</b></p>
+                                    <p>10</p>
                                 </div>
                             </div>
-                            <div className="col-4">
-                                <div className="dash-summary-cell">
-                                    <p><b>Total Sell Today</b></p>
-                                    <p>123500</p>
+                            <div className="col-4 ">
+                                <div className="dash-summary-cell card">
+                                    <p><b>Sold today</b></p>
+                                    <p>50</p>
                                 </div>
                             </div>
+                        </div>
+                        <h4 className="mt-3">statistics</h4>
+                        <div className="statistics">
+
                         </div>
                     </div>
                 </div>

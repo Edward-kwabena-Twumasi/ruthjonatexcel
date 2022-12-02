@@ -14,7 +14,7 @@ function App() {
         <Router>
           <Switch>
             <Route exact path="/">
-              <Redirect to="/app/dashboard" />
+              <Redirect to="/login" />
             </Route>
             <Route path="/app" component={CustomerRootPage}></Route>
             <Route exact path="/login" component={AuthPage}></Route>

@@ -9,7 +9,7 @@ class LoginForm extends Component{
             <div className="auth mx-auto">
                 <form className="">
                     <div className="form-group">
-                        <h4 className="text-center pb-3">User Login</h4>
+                        <h4 className="text-center pb-3">Access My Dashboard</h4>
                     </div>
                     <div className="form-group">
                         <label>Email</label>
@@ -20,7 +20,7 @@ class LoginForm extends Component{
                         <input type="password" className="form-control" id="username"/>
                     </div>
                     <div className="form-group">
-                        <button className="btn btn-primary w-100 mt-2">Login</button>
+                    <Link to="/app/dashboard" className="text-light"><button className="btn btn-primary w-100 mt-2">Login</button></Link>
                     </div>
                     <div>
                         <p>Forgot password? <Link to="/password-reset-account-verify">Click to Reset</Link></p>

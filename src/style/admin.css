@@ -1,11 +1,68 @@
-.admin-page{
-    width: 80%;
+.root-page{
+    width: 100%;
 }
 
-.admin-content{
-    width: 90%;
+.sidenav{
+    width: 15%;
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 700px;
 }
-
+.top-nav{
+ padding: 9px;
+ background-color: black;
+ 
+}
+.main-body{
+    width: 85%;
+}
 .float-right {
     float: right!important;
+}
+.page{
+
+    border-radius: 10px;
+    margin: 2px;
+    padding: 15px;
+    box-shadow: 0px 3px 3px 0px rgba(10, 10, 10, 0.2);
+    height: 700px;
+}
+
+
+.card{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px 0px rgba(10, 10, 10, 0.2);
+    padding: 7px;
+    height: 100px;
+
+}
+.statistics{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px 0px rgba(10, 10, 10, 0.2);
+    padding: 7px;
+    height: 150px;
+    width: 100%;
+    margin: auto;
+    margin-bottom: 20px;
+
+}
+.summary{
+    margin-bottom: 20px;
+
+}
+.table-head{
+    margin-top: 7px;
+    border: 1px solid black;
+    border-radius: 10;
+}
+.table-row{
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px 0px rgba(10, 10, 10, 0.2);
+}
+.title-n-button{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
 }

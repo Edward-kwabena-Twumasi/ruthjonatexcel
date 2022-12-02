@@ -26,10 +26,10 @@ class ProductList extends Component{
 
     render(){
         return (
-            <div className="admin-content mx-auto">
-                <div className="w-100 mb-5">
+            <div className="products-page page">
+                <div className="row title-n-button">
+                    <h3 >Products</h3>
                     <AnchorTag link="/app/shop/product/create" className="btn btn-sm btn-warning float-right" itemValue="Create Product"></AnchorTag>
-                    <h4>Product List</h4>
                 </div>
                 <div className="row mb-5">
                     <div className="col-12">
