@@ -1,26 +1,29 @@
-import React, {Component} from "react";
+import React, {useState,useRef} from "react";
 import AnchorTag from "../../components/Anchortag";
 import Table from "../../components/table/Table";
 import InputFormGroup from "../../components/input/InputFormGroup";
 import SelectFormGroup from "../../components/input/SelectFormGroup";
 import ProductsTable from "../table/ProductsTable";
+import { useLiveQuery } from "dexie-react-hooks";
+import {db} from "../../data/db";
 
+const ProductList =()=>{
+    const [totalProducts,setTotalProducts]=useState(0);
+    const columnList = ["ID", "Name", "Category", "Price", "Stock Amount", "Action"];
+    const productsListDiv=useRef() 
+    const searchResultsDiv=useRef()  
 
-class ProductList extends Component{
-    constructor(props){
-        super(props);
-        this.columnList = ["ID", "Name", "Category", "Price", "Stock Amount", "Action"];
-       
+      const setProducts=(products)=>{
+        setTotalProducts(products.length)
+        console.log(products);
+      }
+       const excategories = useLiveQuery(
+            () => db.categories.toArray()
+          );
+   
 
-        this.selectData = [
-            {"id": 1, "name": "Electronic Accessories"},
-            {"id": 2, "name": "Health & Beauty"},
-            {"id": 3, "name": "Home & Lifestyle"}
-        ]
-    }
-
-
-    render(){
+      if (!excategories) return null;
+   
         return (
             <div className="products-page page">
                 <div className="row title-n-button">
@@ -35,7 +38,7 @@ class ProductList extends Component{
                         <InputFormGroup labelClassName="mb-2" label="" inputClassName="form-control form-control-sm" placeholder="Product Name"/>
                     </div>
                     <div className="col-2">
-                        <SelectFormGroup labelClassName="mb-2" label="" selectClassName="custom-select custom-select-sm" selectData={this.selectData}/>
+                        <SelectFormGroup labelClassName="mb-2" label="" selectClassName="custom-select custom-select-sm" selectData={excategories==null?[]:excategories}/>
                     </div>
                     <div className="col-2">
                         <InputFormGroup labelClassName="mb-2" inputClassName="form-control form-control-sm" placeholder="Product Price"/>
@@ -46,10 +49,16 @@ class ProductList extends Component{
                         </div>
                     </div>
                 </div>
-                <ProductsTable className="table table-striped" columnList={this.columnList} tableData={this.tableData} actionLinkPrefix="" table="products"></ProductsTable>
+                <div className="searchResults container-fluid" ref={searchResultsDiv}>
+
+                </div>
+                <div className="productList" ref={productsListDiv}>
+                    <h5 className="">{totalProducts} total products</h5>
+                    <ProductsTable className="table table-striped" columnList={columnList}  actionLinkPrefix="" table="products" setProducts={setProducts}></ProductsTable>
+                </div>
             </div>
         ) 
     }
-}
+
 
 export default ProductList;
