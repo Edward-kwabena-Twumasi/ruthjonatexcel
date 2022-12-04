@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useRef} from "react";
 import AnchorTag from "../../components/Anchortag";
 import { existingInvoices, removeFromDb } from "../../data/dbFunctions";
 import InputFormGroup from "../input/InputFormGroup";
@@ -6,15 +6,34 @@ import InvoicesTable from "../table/InvoicesTable";
 
 
 const InvoiceList=()=>{
-  const columnList = ["ID", "Customer", "Invoice ID", "Total", "Paid", "Date", "Action"];
-  
   const [totalInvoices,setTotalInvoices]=useState([]);
+  const [searchSuggestions,setSearchSuggestions]=useState([]);
+  const [searchkey,setSearchkey]=useState("");
+
+  const columnList = ["ID", "Customer", "Invoice ID", "Total", "Paid", "Date", "Action"];
+  const productsListDiv=useRef() 
+  const searchResultsDiv=useRef() 
+  const nameField=useRef(); 
        
   const setInvoices=(invoices)=>{
     setTotalInvoices(invoices)
    
     }
+   const remove=removeFromDb
+
    const exinvoices =existingInvoices()
+   const filterProducts=(products)=>{
+
+    if (nameField.current.value.toString().length>0) {
+        setSearchkey(nameField.current.value.toString())
+        setSearchSuggestions(products.filter((product)=>product["name"].toLowerCase().includes(nameField.current.value.toLowerCase())))
+        console.log(searchSuggestions)
+    
+    } else {
+        setSearchSuggestions([])
+        setSearchkey("")
+    }
+}
    
    if (!exinvoices) return null;
         return (
@@ -39,7 +58,33 @@ const InvoiceList=()=>{
                         </div>
                     </div>
                 </div>
-                <InvoicesTable className="table table-striped" columnList={columnList}  setInvoices={setInvoices}></InvoicesTable>
+                <div className="searchResults container-fluid" ref={searchResultsDiv}>
+                    <h5 className=""> {searchkey.length>0 ?"search results for "+searchkey:""}</h5>   
+                    { 
+                    searchSuggestions.map((data,index)=>{
+                    return <div key={index} className="row container-fluid p-3">
+                        {
+                    
+                
+                        [Object.keys(data).pop()].concat(Object.keys(data).slice(0,4)).map((key, index) => {
+
+                            return <h5 key={index} className="col-2"> {data[key]}</h5>
+                        })
+                    
+                        }
+                        <div className="col-2 row">
+                                        <h5>Edit</h5>
+                                        <h5>view</h5>
+                                        <h5 onClick={()=>remove(data["id"])}>Remove</h5>
+                                        </div>
+                        </div>
+                    })
+                    }
+                </div>
+                <div className="productList" ref={productsListDiv}>
+                    <h5 className="">{totalInvoices.length} total invoices</h5>
+                    <InvoicesTable className="table table-striped" columnList={columnList}  setInvoices={setInvoices}></InvoicesTable>
+                </div>    
             </div>
         ) 
     }

@@ -25,7 +25,7 @@ const ProductList =()=>{
     const remove=removeFromDb
     const excategories =existingCategories()
 
-  const filterProducts=(products)=>{
+    const filterProducts=(products)=>{
 
         if (nameField.current.value.toString().length>0) {
             setSearchkey(nameField.current.value.toString())
@@ -39,8 +39,6 @@ const ProductList =()=>{
     }
 
    
-   
-
       if (!excategories) return null;
    
         return (
@@ -94,7 +92,6 @@ const ProductList =()=>{
                     }
                 </div>
                 
-              
                 <div className="productList" ref={productsListDiv}>
                     <h5 className="">{totalProducts.length} total products</h5>
                     <ProductsTable className="table table-striped" columnList={columnList}  actionLinkPrefix="" table="products" setProducts={setProducts}></ProductsTable>
