@@ -1,25 +1,44 @@
 import React, {useState,useRef} from "react";
 import AnchorTag from "../../components/Anchortag";
-import Table from "../../components/table/Table";
 import InputFormGroup from "../../components/input/InputFormGroup";
 import SelectFormGroup from "../../components/input/SelectFormGroup";
 import ProductsTable from "../table/ProductsTable";
-import { useLiveQuery } from "dexie-react-hooks";
-import {db} from "../../data/db";
+import { existingCategories, removeFromDb } from "../../data/dbFunctions";
+
 
 const ProductList =()=>{
-    const [totalProducts,setTotalProducts]=useState(0);
-    const columnList = ["ID", "Name", "Category", "Price", "Stock Amount", "Action"];
-    const productsListDiv=useRef() 
-    const searchResultsDiv=useRef()  
 
-      const setProducts=(products)=>{
-        setTotalProducts(products.length)
-        console.log(products);
-      }
-       const excategories = useLiveQuery(
-            () => db.categories.toArray()
-          );
+    const [totalProducts,setTotalProducts]=useState([]);
+    const [searchSuggestions,setSearchSuggestions]=useState([]);
+    const [searchkey,setSearchkey]=useState("");
+
+    const columnList = ["ID","Name","Category","Price","Stock Amount","Action"];
+    
+    const productsListDiv=useRef() 
+    const searchResultsDiv=useRef() 
+    const nameField=useRef(); 
+
+    const setProducts=(products)=>{
+        setTotalProducts(products)
+       
+    }
+    const remove=removeFromDb
+    const excategories =existingCategories()
+
+  const filterProducts=(products)=>{
+
+        if (nameField.current.value.toString().length>0) {
+            setSearchkey(nameField.current.value.toString())
+            setSearchSuggestions(products.filter((product)=>product["name"].toLowerCase().includes(nameField.current.value.toLowerCase())))
+            console.log(searchSuggestions)
+        
+        } else {
+            setSearchSuggestions([])
+            setSearchkey("")
+        }
+    }
+
+   
    
 
       if (!excategories) return null;
@@ -35,7 +54,9 @@ const ProductList =()=>{
                         <p><b>Search Box</b></p>
                     </div>
                     <div className="col-2">
-                        <InputFormGroup labelClassName="mb-2" label="" inputClassName="form-control form-control-sm" placeholder="Product Name"/>
+                        <div className="form-group">
+                            <input type="text" onChange={()=>filterProducts(totalProducts)} className="form-control form-control-sm" placeholder="Product Name"  ref={nameField}/> 
+                        </div>
                     </div>
                     <div className="col-2">
                         <SelectFormGroup labelClassName="mb-2" label="" selectClassName="custom-select custom-select-sm" selectData={excategories==null?[]:excategories}/>
@@ -50,15 +71,38 @@ const ProductList =()=>{
                     </div>
                 </div>
                 <div className="searchResults container-fluid" ref={searchResultsDiv}>
+                    <h5 className=""> {searchkey.length>0 ?"search results for "+searchkey:""}</h5>   
+                    { 
+                    searchSuggestions.map((data,index)=>{
+                    return <div key={index} className="row container-fluid p-3">
+                        {
+                    
+                
+                        [Object.keys(data).pop()].concat(Object.keys(data).slice(0,4)).map((key, index) => {
 
+                            return <h5 key={index} className="col-2"> {data[key]}</h5>
+                        })
+                    
+                        }
+                        <div className="col-2 row">
+                                        <h5>Edit</h5>
+                                        <h5>view</h5>
+                                        <h5 onClick={()=>remove(data["id"])}>Remove</h5>
+                                        </div>
+                        </div>
+                    })
+                    }
                 </div>
+                
+              
                 <div className="productList" ref={productsListDiv}>
-                    <h5 className="">{totalProducts} total products</h5>
+                    <h5 className="">{totalProducts.length} total products</h5>
                     <ProductsTable className="table table-striped" columnList={columnList}  actionLinkPrefix="" table="products" setProducts={setProducts}></ProductsTable>
                 </div>
+            
+                
             </div>
         ) 
     }
-
 
 export default ProductList;

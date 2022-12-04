@@ -26,9 +26,9 @@ class CustomerRootPage extends Component{
                                     <div className="list-group side-navigation">
                                         <AnchorTag link={`${this.props.match.path}/dashboard`} liClassName="" className="list-group-item list-group-item-action" itemValue="Dashboard"></AnchorTag>
                                         <AnchorTag link={`${this.props.match.path}/shop/view`} liClassName="" className="list-group-item list-group-item-action" itemValue="Shop"></AnchorTag>
-                                        <AnchorTag link={`${this.props.match.path}/shop/product-category/list`} liClassName="" className="list-group-item list-group-item-action" itemValue="Product Categories"></AnchorTag>
+                                        <AnchorTag link={`${this.props.match.path}/shop/product-category/list`} liClassName="" className="list-group-item list-group-item-action" itemValue="Categories"></AnchorTag>
                                         <AnchorTag link={`${this.props.match.path}/shop/product/list`} className="list-group-item list-group-item-action" itemValue="Products"></AnchorTag>
-                                        <AnchorTag link={`${this.props.match.path}/shop/invoice/list`} className="list-group-item list-group-item-action" itemValue="Invoice"></AnchorTag>
+                                        <AnchorTag link={`${this.props.match.path}/shop/invoice/list`} className="list-group-item list-group-item-action" itemValue="Invoices"></AnchorTag>
                                         <AnchorTag link={`${this.props.match.path}/profile/me`} className="list-group-item list-group-item-action" itemValue="Profile"></AnchorTag>
                                         <AnchorTag link={`${this.props.match.path}/profile/password-reset`} className="list-group-item list-group-item-action" itemValue="Password Reset"></AnchorTag>
                                     </div>

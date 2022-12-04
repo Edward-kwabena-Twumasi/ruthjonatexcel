@@ -20,7 +20,6 @@ const ProductForm =()=>{
     const excategories = useLiveQuery(
         () => db.categories.toArray()
       );
-     let productCategory=[];
     const addProduct=async ([name,category_name,price,total_count])=>{
 
         try {
@@ -76,7 +75,7 @@ const ProductForm =()=>{
                                     <option>Choose...</option>
                                     {
                                     excategories.map((data, index) => {
-                                            return <option value={data.id} key={index}>{data.name}</option>
+                                            return <option value={data.name} key={index}>{data.name}</option>
                                         })
                                     }
                                 </select>

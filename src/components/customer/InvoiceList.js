@@ -1,28 +1,27 @@
-import React, {Component} from "react";
+import React,{useState} from "react";
 import AnchorTag from "../../components/Anchortag";
-import Table from "../../components/table/Table";
+import { existingInvoices, removeFromDb } from "../../data/dbFunctions";
 import InputFormGroup from "../input/InputFormGroup";
+import InvoicesTable from "../table/InvoicesTable";
 
 
-class InvoiceList extends Component{
-    constructor(props){
-        super(props);
-        this.columnList = ["ID", "Customer", "Invoice ID", "Total", "Paid", "Date", "Action"];
-        this.tableData = [
-            {"id": 1, "customer": "Md Nazmul Hasan", "invoice_id": "201256", "total": "238.00", "is_paid": "Yes", "date": "20th July, 2021"},
-            {"id": 2, "customer": "Farzana Yesmin", "invoice_id": "201256", "total": "980.00", "is_paid": "Yes", "date": "8th July, 2021"},
-            {"id": 3, "customer": "Amit Shah", "invoice_id": "201256", "total": "305.00", "is_paid": "Yes", "date": "11th May, 2021"},
-            {"id": 4, "customer": "Md Farhan Kabir", "invoice_id": "201256", "total": "139.00", "is_paid": "No", "date": "1st April, 2021"},
-        ]
+const InvoiceList=()=>{
+  const columnList = ["ID", "Customer", "Invoice ID", "Total", "Paid", "Date", "Action"];
+  
+  const [totalInvoices,setTotalInvoices]=useState([]);
+       
+  const setInvoices=(invoices)=>{
+    setTotalInvoices(invoices)
+   
     }
-
-
-    render(){
+   const exinvoices =existingInvoices()
+   
+   if (!exinvoices) return null;
         return (
-            <div className="admin-content mx-auto">
+            <div className="invoices-page page">
                 <div className="w-100 mb-5">
                     <AnchorTag link="/app/shop/invoice/create" className="btn btn-sm btn-warning float-right" itemValue="Create Invocie"></AnchorTag>
-                    <h4>Invoice List</h4>
+                    <h4>Invoices</h4>
                 </div>
                 <div className="row mb-5">
                     <div className="col-12">
@@ -40,10 +39,10 @@ class InvoiceList extends Component{
                         </div>
                     </div>
                 </div>
-                <Table className="table table-striped" columnList={this.columnList} tableData={this.tableData} actionLinkPrefix=""></Table>
+                <InvoicesTable className="table table-striped" columnList={columnList}  setInvoices={setInvoices}></InvoicesTable>
             </div>
         ) 
     }
-}
+
 
 export default InvoiceList;

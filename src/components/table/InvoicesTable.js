@@ -2,24 +2,24 @@ import React from "react";
 import TableHead from "./TableHead";
 import TdTag from "./TdTag"
 import {db} from "../../data/db";
-import { existingProducts } from "../../data/dbFunctions";
+import { existingInvoices } from "../../data/dbFunctions";
 
 
 
-const ProductsTable=(props)=>{
+const InvoicesTable=(props)=>{
     
     
-      const exproducts = existingProducts()
+      const exinvoices = existingInvoices()
      
 
       const remove=(index)=>{
-      db.exproducts.where("id").equals(index).delete();
+      db.exinvoices.where("id").equals(index).delete();
       console.log(index);
       }
 
-      if (!exproducts) return null;
+      if (!exinvoices) return null;
       else { 
-        props.setProducts(exproducts)
+        props.setInvoices(exinvoices)
         return (
             
             <table className={props.className} >
@@ -27,7 +27,7 @@ const ProductsTable=(props)=>{
                 <tbody>
                         {
                        
-                       exproducts.map((data, index) => {
+                       exinvoices.map((data, index) => {
                             return (
                             <tr key={index} className="table-row" >
                                 {
@@ -61,4 +61,4 @@ const ProductsTable=(props)=>{
 //     allowAction: true
 // }
 
-export default ProductsTable;
+export default InvoicesTable;

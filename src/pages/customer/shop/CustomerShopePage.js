@@ -33,9 +33,6 @@ class CustomerShopPage extends Component{
                 <Route exact path={`${this.props.match.path}/product/list`} component={ProductList}/>
                 <Route exact path={`${this.props.match.path}/product/create`} component={ProductForm}/>
                 <Route exact path={`${this.props.match.path}/product/view/:productId`} component={ProductView}/>
-                <Route exact path={`${this.props.match.path}/employee/list`} component={EmployeeList}/>
-                <Route exact path={`${this.props.match.path}/employee/create`} component={EmployeeForm}/>
-                <Route exact path={`${this.props.match.path}/employee/view/:emoloyeeId`} component={EmployeeView}/>
                 <Route exact path={`${this.props.match.path}/invoice/list`} component={InvoiceList}/>
                 <Route exact path={`${this.props.match.path}/invoice/create`} component={InvoiceForm}/>
             </Switch>

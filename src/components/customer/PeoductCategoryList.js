@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import Table from "../../components/table/Table";
 import { useState,useReducer,useRef } from "react";
 import {db} from "../../data/db";
+import { addToCategory } from "../../data/dbFunctions";
 
 
 
@@ -11,26 +12,11 @@ const ProductCategoryList =()=>{
     
     const  columnList = ["ID", "Name", "Total Product", "Action"];
 
-     
-    
+      
     const [status, setStatus] = useState("");
     const categoryName=useRef();
       
-    const addCategory=async ([name,total_products])=>{
-        try {
-
-            // Add the new friend!
-            const id = await db.categories.add({
-              name,
-              total_products
-            });
-      
-            setStatus(`Category ${name} successfully added. Got id ${id}`);
-           
-          } catch (error) {
-            setStatus(`Failed to add ${name}: ${error}`);
-          }
-    }
+    const addCategory=addToCategory(setStatus)
     
    
         return (
