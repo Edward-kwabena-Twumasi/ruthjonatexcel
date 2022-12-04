@@ -28,6 +28,7 @@ const ProductCategoryList =()=>{
                 </div>
                 <h5>{status}</h5>
                 <Table className="table table-striped" columnList={columnList}  actionLinkPrefix="" data="categories"></Table>
+                     {/* Modal */}
                     <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div className="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">

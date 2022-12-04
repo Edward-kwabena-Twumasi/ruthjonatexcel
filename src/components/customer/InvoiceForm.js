@@ -4,47 +4,33 @@ import Button from "../Button";
 import InputFormGroup from "../input/InputFormGroup";
 import SelectFormGroup from "../input/SelectFormGroup";
 import SearchDataTable from "../table/SearchDataTable";
-import Table from "../table/Table";
+import { existingProducts, existingCategories } from "../../data/dbFunctions";
+import TableHead from "../table/TableHead";
+import TdTag from "../table/TdTag";
 
 
-class InvoiceForm extends Component{
-    constructor(props){
-        super(props);
-        this.productCategory = [
-            {
-                "id": 1,
-                "name": "Computer Accessories"
-            },
-            {
-                "id": 2,
-                "name": "Kitchen & Dining"
-            },
-            {
-                "id": 2,
-                "name": "Watch & Sunglasses"
-            }
-        ]
-        this.columnList = ["ID", "Name", "Stock", "Price", "Action"];
-        this.tableData = [
-            {"id": 1, "name": "USB 2.0 to Sata 7+15 Pin 2.5 Converter ..", "stock": 20, "price": "238.00"},
+
+const InvoiceForm =()=>{
+    
+       const columnList = ["ID", "Name","Price" ,"Stock" ,"Quantiy", "Action"];
+       const exproducts = existingProducts()
+       const excategories=existingCategories()
+       const tableData = [
+            {"id": 1, "name": "USB 2.0 to Sata 7+15 Pin 2.5 Converter ..", "stock": 5, "price": "238.00"},
             {"id": 2, "name": "FANTECH VX7 CRYPTO GAMING MOUSE ..", "stock": 20, "price": "980.00"},
             {"id": 3, "name": "Cake decoration turntable - 28cm and 3 pieces set ..", "stock": 20, "price": "305.00"},
-            {"id": 4, "name": "Stylish White Sunglasses ..", "stock": 20, "price": "139.00"},
+            {"id": 4, "name": "Stylish White Sunglasses ..", "stock": 10, "price": "139.00"},
         ]
-
-        this.invoiceColumnList = ["ID", "Name", "Quantity", "Price", "Sub total"];
-        this.invoiceTableData = [
-            {"id": 1, "name": "USB 2.0 to Sata 7+15 Pin 2.5 Converter ..", "quantity": 1, "price": "238.00", "subtotal": 2000},
-            {"id": 2, "name": "FANTECH VX7 CRYPTO GAMING MOUSE ..", "quantity": 2, "price": "980.00", "subtotal": 2000},
-            {"id": 3, "name": "Cake decoration turntable - 28cm and 3 pieces set ..", "quantity": 1, "price": "305.00", "subtotal": 2000},
-            {"id": 4, "name": "Stylish White Sunglasses ..", "quantity": 4, "price": "139.00", "subtotal": 2000},
-        ]
-    }
+        const invoiceColumnList = ["ID", "Name", "Quantity", "Price", "Sub total"];
+        
+   
 
 
-    render(){
+        if (exproducts==null) {
+          return null  
+        }
         return (
-            <div className="admin-content mx-auto">
+            <div className="invoice-form page">
                <div className="w-100 mb-5">
                     <AnchorTag link="/app/shop/invoice/list" className="btn btn-sm btn-primary float-right" itemValue="Back to Invoice List"></AnchorTag>
                     <h4>Create Invoice</h4>
@@ -64,7 +50,39 @@ class InvoiceForm extends Component{
                             </div>
 
                             <div className="col-12 mt-4">
-                                <Table className="table table-striped" allowAction={false} columnList={this.invoiceColumnList} tableData={this.invoiceTableData} actionLinkPrefix=""></Table>
+                                <h5 className="p-3">Selected Products</h5>
+                                {
+                                     <table className={"table table-striped"} >
+                                     <TableHead columnList={invoiceColumnList}></TableHead>
+                                     <tbody>
+                                         {
+                                             
+                                            exproducts.map((data, index) => {
+                                                 return (
+                                                 <tr key={index} className="table-row" >
+                                                     {
+                                                         [Object.keys(data).pop()].concat(Object.keys(data).slice(0,3)).map((key, index) => {
+                     
+                                                             return <TdTag key={index} value={data[key]} isAction="false"></TdTag>
+                                                         })
+                                                     }
+                                                     {/* <td scope="col" className="row">
+                                                         <h5>Edit</h5>
+                                                         <h5>view</h5>
+                                                         <h5 onClick={()=>{}}>Remove</h5>
+                                                         </td> */}
+                                                     
+                     
+                                                     {/* {renderAction(data)} */}
+                                                     
+                                                     
+                                                 </tr>
+                                                 )
+                                             })
+                                         }
+                                     </tbody>
+                                 </table>
+                                }
                                 <table className="table table-striped w-25 float-right mt-4">
                                     <tbody>
                                         <tr>
@@ -97,7 +115,7 @@ class InvoiceForm extends Component{
                                                 <InputFormGroup labelClassName="sr-only" inputClassName="form-control  form-control-sm" placeholder="Product Code"/>
                                             </div>
                                             <div className="col-3">
-                                                <SelectFormGroup labelClassName="sr-only" placeholder="Category" selectClassName="custom-select custom-select-sm mr-sm-2" selectData={this.productCategory}/>
+                                                <SelectFormGroup labelClassName="sr-only" placeholder="Category" selectClassName="custom-select custom-select-sm mr-sm-2" selectData={excategories==null?[]:excategories}/>
                                             </div>
                                             <div className="col-3">
                                                 <Button className="btn btn-sm btn-warning w-75" text="Search"/>
@@ -105,7 +123,7 @@ class InvoiceForm extends Component{
                                             
                                         </div>
                                         <div className="w-100">
-                                            <SearchDataTable className="table table-sm search-tb-font table-striped" columnList={this.columnList} tableData={this.tableData} actionLinkPrefix=""/>
+                                            <SearchDataTable className="table table-sm search-tb-font table-striped" columnList={columnList} tableData={exproducts} actionLinkPrefix=""/>
                                         </div>
                                     </div>
                                 </div>
@@ -117,6 +135,6 @@ class InvoiceForm extends Component{
             </div>
         ) 
     }
-}
+
 
 export default InvoiceForm;

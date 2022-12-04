@@ -1,38 +1,89 @@
-import React, {Component} from "react";
+import React, {useRef,useState,createRef} from "react";
 import SearchTableHead from "./SearchTableHead";
 import TdTag from "./TdTag";
-import SearchActionTd from "../table/SearchTableActionTd";
+
+const SearchDataTable =(props)=>{
+    const quantityRef=useRef(); 
+    const elementsRef = useRef(props.tableData.map(() => createRef()));
+    console.log(props.tableData)
 
 
-class SearchDataTable extends Component{
-    constructor(props){
-        super(props);
+
+    const [dataWcheckProp,changedataWcheckProp]=useState(props.tableData);
+    const [checked,updateChecked]=useState([]);
+
+    
+
+    const addToInvoice=([id,quantity])=>{
+    let recentlyCHeked= dataWcheckProp.filter(data=>data.id==id)[0]
+    checked.push(  {"id":recentlyCHeked.id,"name":recentlyCHeked.name,"quantity":parseInt(quantity.value),
+    "price":recentlyCHeked.price,"sub_total":parseInt(recentlyCHeked.price)*quantity.value}
+    )
+    updateChecked(checked)
+        console.log(checked)
+
+
     }
 
+    const selectionOptions=(total)=>{
+        let options=[]
+    for (let index = 1; index <=total; index++) {
+    options.push( <option value={index} key={index}>{index}</option>)
+        
+    }
+    return options
+    }
 
-    render(){
+   
         return (
-            <table className={this.props.className}>
-                <SearchTableHead columnList={this.props.columnList}></SearchTableHead>
+            <table className={props.className}>
+                <SearchTableHead columnList={props.columnList}></SearchTableHead>
                 <tbody>
                     {
-                        this.props.tableData.map((data, index) => {
+                        props.tableData.map((data, index) => {
+                            const reorderdKeys= [Object.keys(data).pop()].concat(Object.keys(data).slice(0,4));
+                            reorderdKeys.splice(2,1)
                             return (
                             <tr key={index}>
                                 {
-                                    Object.keys(data).map((key, index) => {
-                                        return <TdTag key={index} value={data[key]} isLinked="false"></TdTag>
+                               
+                               reorderdKeys.map((key, indx) => {
+                                        return <TdTag key={indx} value={data[key]} isLinked="false"></TdTag>
                                     })
+                                    
                                 }
-                                <SearchActionTd value={data["id"]} isLinked="true" linkPrefix={this.props.actionLinkPrefix}></SearchActionTd>
+                                <td scope="col" className="row">
+                                    {
+                                        
+                                    }
+                                    {
+                                        <select  id={data.id}  ref={elementsRef.current[index]}>
+                                       
+                                        {
+                                           
+
+                                      selectionOptions(data.total_count)
+                                            
+                                        }
+                                    </select>
+                                    }
+
+                                </td>
+                               <td>
+                               <button className="text-light btn btn-info text-light"  onClick={()=>addToInvoice([data.id,elementsRef.current[index].current])} >+</button>
+
+                               </td>
+                                 
                             </tr>
                             )
+                            
                         })
                     }
+                   
                 </tbody>
             </table>
         ) 
     }
-}
+
 
 export default SearchDataTable;
