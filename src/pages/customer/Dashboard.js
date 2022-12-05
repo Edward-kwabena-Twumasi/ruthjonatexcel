@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import PageHeader from "../../components/PageHeader";
+import { totalCategories, totalProducts } from "../../data/dbFunctions";
 
 class DashboardPage extends Component{
     constructor(props){
@@ -20,13 +21,13 @@ class DashboardPage extends Component{
                             <div className="col-4 ">
                                 <div className="dash-summary-cell card">
                                     <p><b>All Products</b></p>
-                                    <p>500</p>
+                                    <p>{}</p>
                                 </div>
                             </div>
                             <div className="col-4 ">
                                 <div className="dash-summary-cell card">
                                     <p><b>All Categories</b></p>
-                                    <p>10</p>
+                                    <p>{}</p>
                                 </div>
                             </div>
                             <div className="col-4 ">

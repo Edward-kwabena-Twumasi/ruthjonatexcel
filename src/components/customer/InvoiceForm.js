@@ -4,7 +4,7 @@ import Button from "../Button";
 import InputFormGroup from "../input/InputFormGroup";
 import SelectFormGroup from "../input/SelectFormGroup";
 import SearchDataTable from "../table/SearchDataTable";
-import { existingProducts, existingCategories } from "../../data/dbFunctions";
+import { existingProducts, existingCategories, addToInvoices } from "../../data/dbFunctions";
 import TableHead from "../table/TableHead";
 import TdTag from "../table/TdTag";
 import useInvoiceItemsStore from "../../data/temporaryStore";
@@ -16,6 +16,7 @@ const InvoiceForm = ()=>{
     
        const columnList = ["ID", "Name","Price" ,"Stock" ,"Quantiy", "Action"];
        const invoiceItemsList = ["ID", "Name", "Quantity", "Price", "Sub total"];
+       let total=0;
 
        let exproducts = existingProducts()
        const excategories=existingCategories()
@@ -24,7 +25,17 @@ const InvoiceForm = ()=>{
        
        const nameField=useRef();
        let [products,setProducts]=useState([]);
+       const [status, setStatus] = useState("");
        
+       const addInvoice=addToInvoices(setStatus);
+
+       
+       const getTotal=(items)=>{
+        let total=0;
+        items.forEach(item=>total+=total+item.sub_total)
+        return total;
+       }
+
        useEffect(()=>{
         products=exproducts
         setProducts(products)
@@ -59,23 +70,26 @@ const InvoiceForm = ()=>{
                             </div>
                             <div className="col-3">
                                 <div className="form-group">
-                                    <Button className="btn btn-sm btn-warning w-100" text="Save Invoice"/>
+                                    <button className="btn btn-sm btn-warning w-100" text="Save Invoice" onClick={()=>addInvoice(["customer",total,"paid"])} />
                                 </div>
                             </div>
 
                             <div className="col-12 mt-4">
                                 <h5 className="p-3">Selected Products</h5>
                                 {
+                                   
                                      <table className={"table table-striped"} >
                                      <TableHead columnList={invoiceItemsList}></TableHead>
                                      <tbody>
                                          {
-                                             
+                                           
                                             invoiceItems.map((data, index) => {
+                                                total+=data.sub_total
+                                                const reorderdKeys= Object.keys(data);
                                                  return (
                                                  <tr key={index} className="table-row" >
                                                      {
-                                                         [Object.keys(data).pop()].concat(Object.keys(data).slice(0,3)).map((key, index) => {
+                                                        reorderdKeys.map((key, index) => {
                      
                                                              return <TdTag key={index} value={data[key]} isAction="false"></TdTag>
                                                          })
@@ -92,19 +106,16 @@ const InvoiceForm = ()=>{
                                                      
                                                  </tr>
                                                  )
+                                                 
                                              })
+                                             
                                          }
+                                         <tr>{getTotal(invoiceItems)}</tr>
+
                                      </tbody>
                                  </table>
                                 }
-                                <table className="table table-striped w-25 float-right mt-4">
-                                    <tbody>
-                                        <tr>
-                                            <td>Total</td>
-                                            <td>25785.00</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                
                             </div>
                         </div>
                         {/* Modal */}

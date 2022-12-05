@@ -1,10 +1,8 @@
 import React, {useRef,useState} from "react";
 import AnchorTag from "../../components/Anchortag";
-import InputFormGroup from "../input/InputFormGroup";
-import TextAreaFormGroup from "../input/TextAreaFormGroup";
-import SelectFormGroup from "../input/SelectFormGroup";
 import { useLiveQuery } from "dexie-react-hooks";
 import {db} from "../../data/db";
+import {  addToProducts, existingCategories } from "../../data/dbFunctions";
 
 
 const ProductForm =()=>{
@@ -17,28 +15,10 @@ const ProductForm =()=>{
     const stockRef=useRef();
 
   
-    const excategories = useLiveQuery(
-        () => db.categories.toArray()
-      );
-    const addProduct=async ([name,category_name,price,total_count])=>{
+    const excategories = existingCategories();
 
-        try {
-
-            // Add the new friend!
-            const id = await db.products.add({
-              name,
-              category_name,
-              price,
-              total_count
-            });
-      
-            setStatus(`Product ${name} successfully added. Got id ${id}`);
-           
-          } catch (error) {
-            setStatus(`Failed to add ${name}: ${error}`);
-          }
-    }
-
+    const addProduct= addToProducts(setStatus)
+    console.log(addProduct)
 
      if (!excategories) return null;
         return (
@@ -82,8 +62,7 @@ const ProductForm =()=>{
                             </div>
                             <div className="row m-3">
                                     <button type="button" className="btn btn-secondary col-3" >Cancel</button>
-                                    <button type="button" className="btn btn-primary ml-4 col-3" onClick={()=>
-                                        addProduct([nameRef.current.value,categoryRef.current.value,priceRef.current.value,stockRef.current.value])} >
+                                    <button type="button" className="btn btn-primary ml-4 col-3" onClick={()=> addProduct([nameRef.current.value,categoryRef.current.value,priceRef.current.value,stockRef.current.value])} >
                                             Submit
                                             </button>
                                 </div>

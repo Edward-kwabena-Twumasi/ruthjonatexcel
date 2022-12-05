@@ -9,7 +9,6 @@ import { existingProducts, removeFromDb } from "../../data/dbFunctions";
 const ProductsTable=(props)=>{
     
     
-      const exproducts = existingProducts()
      
       const remove=removeFromDb
       console.log(props.products)
