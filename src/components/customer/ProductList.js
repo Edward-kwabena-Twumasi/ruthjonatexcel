@@ -1,4 +1,4 @@
-import React, {useState,useRef} from "react";
+import React, {useState,useRef,useEffect} from "react";
 import AnchorTag from "../../components/Anchortag";
 import InputFormGroup from "../../components/input/InputFormGroup";
 import SelectFormGroup from "../../components/input/SelectFormGroup";
@@ -8,35 +8,29 @@ import { existingCategories, existingProducts, removeFromDb } from "../../data/d
 
 const ProductList =()=>{
 
-    const [totalProducts,setTotalProducts]=useState([]);
-    const [searchSuggestions,setSearchSuggestions]=useState([]);
-    const [searchkey,setSearchkey]=useState("");
-
     const columnList = ["ID","Name","Category","Price","Stock Amount","Action"];
-    
+    let [products,setProducts]=useState([]);
     const productsListDiv=useRef() 
-    const searchResultsDiv=useRef() 
     const nameField=useRef(); 
-
-    const setProducts=(products)=>{
-        setTotalProducts(products)
-       
-    }
-
     const remove=removeFromDb
     const excategories =existingCategories()
     const exproducts = existingProducts()
 
-    const filterProducts=(products)=>{
+    useEffect(()=>{
+        products=exproducts
+        setProducts(products)
+        
+       },[exproducts])
+    
+    
+    const filterProducts=(query)=>{
 
-        if (nameField.current.value.toString().length>0) {
-            setSearchkey(nameField.current.value.toString())
-            setSearchSuggestions(exproducts.filter((product)=>product["name"].toLowerCase().includes(nameField.current.value.toLowerCase())))
-            console.log(searchSuggestions)
+        if (query.toString().length>0) {
+            setProducts(products.filter(product=>product.name.toLowerCase().includes(query.toLowerCase())))
         
         } else {
-            setSearchSuggestions([])
-            setSearchkey("")
+            products=exproducts
+            setProducts(products)
         }
     }
 
@@ -55,7 +49,7 @@ const ProductList =()=>{
                     </div>
                     <div className="col-2">
                         <div className="form-group">
-                            <input type="text" onChange={()=>filterProducts(totalProducts)} className="form-control form-control-sm" placeholder="Product Name"  ref={nameField}/> 
+                            <input type="text" onChange={()=>filterProducts(nameField.current.value)} className="form-control form-control-sm" placeholder="Product Name"  ref={nameField}/> 
                         </div>
                     </div>
                     <div className="col-2">
@@ -70,33 +64,11 @@ const ProductList =()=>{
                         </div>
                     </div>
                 </div>
-                <div className="searchResults container-fluid" ref={searchResultsDiv}>
-                    <h5 className=""> {searchkey.length>0 ?"search results for "+searchkey:""}</h5>   
-                    { 
-                    searchSuggestions.map((data,index)=>{
-                    return <div key={index} className="row container-fluid p-3">
-                        {
-                    
                 
-                        [Object.keys(data).pop()].concat(Object.keys(data).slice(0,4)).map((key, index) => {
-
-                            return <h5 key={index} className="col-2"> {data[key]}</h5>
-                        })
-                    
-                        }
-                        <div className="col-2 row">
-                                        <h5>Edit</h5>
-                                        <h5>view</h5>
-                                        <h5 onClick={()=>remove(data["id"])}>Remove</h5>
-                                        </div>
-                        </div>
-                    })
-                    }
-                </div>
                 
                 <div className="productList" ref={productsListDiv}>
-                    <h5 className="">{totalProducts.length} total products</h5>
-                    <ProductsTable className="table table-striped" columnList={columnList}  products={exproducts}></ProductsTable>
+                    <h5 className="">{exproducts.length} total products</h5>
+                    <ProductsTable className="table table-striped" columnList={columnList}  products={products==null? exproducts:products}></ProductsTable>
                 </div>
             
                 

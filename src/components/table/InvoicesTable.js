@@ -1,8 +1,13 @@
 import React from "react";
 import TableHead from "./TableHead";
 import TdTag from "./TdTag"
-import {db} from "../../data/db";
-import { existingInvoices, removeFromDb } from "../../data/dbFunctions";
+import {  removeFromDb } from "../../data/dbFunctions";
+import { BsEye } from "react-icons/bs";
+import { MdOutlineModeEdit } from "react-icons/md";
+import { AiOutlineDelete } from "react-icons/ai";
+
+
+
 
 
 
@@ -23,15 +28,15 @@ const InvoicesTable=(props)=>{
                             return (
                             <tr key={index} className="table-row" >
                                 {
-                                    [Object.keys(data).pop()].concat(Object.keys(data).slice(0,4)).map((key, index) => {
+                                    [Object.keys(data).pop()].concat(Object.keys(data).slice(0,5)).map((key, index) => {
 
                                         return <TdTag key={index} value={data[key]} isAction="false"></TdTag>
                                     })
                                 }
                                 <td scope="col" className="row">
-                                    <h5>Edit</h5>
-                                    <h5>view</h5>
-                                    <h5 onClick={()=>remove(data["id"])}>Remove</h5>
+                                    <MdOutlineModeEdit></MdOutlineModeEdit>
+                                    <BsEye></BsEye>
+                                    <AiOutlineDelete onClick={()=>remove(data["id"])}></AiOutlineDelete>
                                     </td>
                                 
 

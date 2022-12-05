@@ -53,6 +53,7 @@ export const addToInvoices=(setStatus)=>{
   return async ([customer,total_amount,payment_status])=>{
     const date= new Date();
     const idFromDate=date.getTime()
+    const dateString=(date.toLocaleString())
   try {
     
       // Add the new categoriy!
@@ -61,7 +62,7 @@ export const addToInvoices=(setStatus)=>{
        idFromDate,
         total_amount,
         payment_status,
-        date
+        dateString
       });
 
       setStatus(`Category ${idFromDate} successfully added. Got id ${id}`);

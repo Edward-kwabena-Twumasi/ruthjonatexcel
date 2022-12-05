@@ -1,8 +1,8 @@
-import React, {Component} from "react";
+import React  from "react";
 import Table from "../../components/table/Table";
-import { useState,useReducer,useRef } from "react";
-import {db} from "../../data/db";
+import { useState,useRef } from "react";
 import { addToCategory } from "../../data/dbFunctions";
+
 
 
 

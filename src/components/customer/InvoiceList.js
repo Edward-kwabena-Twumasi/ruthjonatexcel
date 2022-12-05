@@ -62,11 +62,12 @@ const InvoiceList=()=>{
                     <h5 className=""> {searchkey.length>0 ?"search results for "+searchkey:""}</h5>   
                     { 
                     searchSuggestions.map((data,index)=>{
+                        
                     return <div key={index} className="row container-fluid p-3">
                         {
                     
                 
-                        [Object.keys(data).pop()].concat(Object.keys(data).slice(0,4)).map((key, index) => {
+                        [Object.keys(data).pop()].concat(Object.keys(data).slice(0,5)).map((key, index) => {
 
                             return <h5 key={index} className="col-2"> {data[key]}</h5>
                         })

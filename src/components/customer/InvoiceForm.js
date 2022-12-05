@@ -70,7 +70,7 @@ const InvoiceForm = ()=>{
                             </div>
                             <div className="col-3">
                                 <div className="form-group">
-                                    <button className="btn btn-sm btn-warning w-100" text="Save Invoice" onClick={()=>addInvoice(["customer",total,"paid"])} />
+                                    <button className="btn  btn-warning w-100"  onClick={()=>addInvoice(["customer",total,"paid"])}>Save Invoice</button>
                                 </div>
                             </div>
 
@@ -110,12 +110,15 @@ const InvoiceForm = ()=>{
                                              })
                                              
                                          }
-                                         <tr>{getTotal(invoiceItems)}</tr>
+                                        
 
                                      </tbody>
                                  </table>
+                                 
                                 }
-                                
+                                {
+                                     <h3 className="total-display ">{getTotal(invoiceItems)}</h3>
+                                }
                             </div>
                         </div>
                         {/* Modal */}
