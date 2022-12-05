@@ -1,37 +1,40 @@
 import React, {useRef,useState,createRef} from "react";
 import SearchTableHead from "./SearchTableHead";
 import TdTag from "./TdTag";
+import useInvoiceItemsStore from "../../data/temporaryStore";
+
+
 
 const SearchDataTable =(props)=>{
-    const quantityRef=useRef(); 
+
     const elementsRef = useRef(props.tableData.map(() => createRef()));
-    console.log(props.tableData)
 
 
-
-    const [dataWcheckProp,changedataWcheckProp]=useState(props.tableData);
+    const [produtsToAdd,changeprodutsToAdd]=useState(props.tableData);
     const [checked,updateChecked]=useState([]);
-
     
+    const addInvoiceItem=useInvoiceItemsStore((state) => state.addItems)
+  
 
     const addToInvoice=([id,quantity])=>{
-    let recentlyCHeked= dataWcheckProp.filter(data=>data.id==id)[0]
-    checked.push(  {"id":recentlyCHeked.id,"name":recentlyCHeked.name,"quantity":parseInt(quantity.value),
-    "price":recentlyCHeked.price,"sub_total":parseInt(recentlyCHeked.price)*quantity.value}
-    )
-    updateChecked(checked)
-        console.log(checked)
 
+        let recentlySelected= produtsToAdd.filter(data=>data.id==id)[0]
+        checked.push( 
+        {"id":recentlySelected.id,"name":recentlySelected.name,"quantity":parseInt(quantity.value),
+        "price":recentlySelected.price,"sub_total":parseInt(recentlySelected.price)*quantity.value}
+        )  
+        updateChecked(checked)
+        addInvoiceItem(checked.pop())
 
     }
 
     const selectionOptions=(total)=>{
         let options=[]
-    for (let index = 1; index <=total; index++) {
-    options.push( <option value={index} key={index}>{index}</option>)
+        for (let index = 1; index <=total; index++) {
+        options.push( <option value={index} key={index}>{index}</option>)
         
-    }
-    return options
+         }
+        return options
     }
 
    

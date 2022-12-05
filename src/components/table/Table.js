@@ -4,22 +4,17 @@ import TdTag from "./TdTag"
 import { Button } from "bootstrap";
 import { useLiveQuery } from "dexie-react-hooks";
 import {db} from "../../data/db";
+import { existingCategories, removeFromDb } from "../../data/dbFunctions";
 
 
 
 const Table=(props)=>{
     
-    const excategories = useLiveQuery(
-        () => db.categories.toArray()
-      );
-      
+    const excategories = existingCategories();
 
-      const remove=(index)=>{
-      db.excategories.where("id").equals(index).delete();
-      console.log(index);
-      }
+    const remove=removeFromDb
 
-      if (!excategories) return null;
+    if (!excategories) return null;
         return (
             <table className={props.className} >
                 <TableHead columnList={props.columnList}></TableHead>

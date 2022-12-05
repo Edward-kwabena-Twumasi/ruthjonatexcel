@@ -2,24 +2,16 @@ import React from "react";
 import TableHead from "./TableHead";
 import TdTag from "./TdTag"
 import {db} from "../../data/db";
-import { existingInvoices } from "../../data/dbFunctions";
+import { existingInvoices, removeFromDb } from "../../data/dbFunctions";
 
 
 
 const InvoicesTable=(props)=>{
     
+
+      const remove=removeFromDb
+
     
-      const exinvoices = existingInvoices()
-     
-
-      const remove=(index)=>{
-      db.exinvoices.where("id").equals(index).delete();
-      console.log(index);
-      }
-
-      if (!exinvoices) return null;
-      else { 
-        props.setInvoices(exinvoices)
         return (
             
             <table className={props.className} >
@@ -27,7 +19,7 @@ const InvoicesTable=(props)=>{
                 <tbody>
                         {
                        
-                       exinvoices.map((data, index) => {
+                      props.invoices.map((data, index) => {
                             return (
                             <tr key={index} className="table-row" >
                                 {
@@ -53,9 +45,10 @@ const InvoicesTable=(props)=>{
                     }
                 </tbody>
             </table>
-        ) }
+        ) 
+    }
     
-}
+
 
 // Table.defaultProps = {
 //     allowAction: true

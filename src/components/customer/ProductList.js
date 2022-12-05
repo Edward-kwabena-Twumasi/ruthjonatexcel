@@ -3,7 +3,7 @@ import AnchorTag from "../../components/Anchortag";
 import InputFormGroup from "../../components/input/InputFormGroup";
 import SelectFormGroup from "../../components/input/SelectFormGroup";
 import ProductsTable from "../table/ProductsTable";
-import { existingCategories, removeFromDb } from "../../data/dbFunctions";
+import { existingCategories, existingProducts, removeFromDb } from "../../data/dbFunctions";
 
 
 const ProductList =()=>{
@@ -22,14 +22,16 @@ const ProductList =()=>{
         setTotalProducts(products)
        
     }
+
     const remove=removeFromDb
     const excategories =existingCategories()
+    const exproducts = existingProducts()
 
     const filterProducts=(products)=>{
 
         if (nameField.current.value.toString().length>0) {
             setSearchkey(nameField.current.value.toString())
-            setSearchSuggestions(products.filter((product)=>product["name"].toLowerCase().includes(nameField.current.value.toLowerCase())))
+            setSearchSuggestions(exproducts.filter((product)=>product["name"].toLowerCase().includes(nameField.current.value.toLowerCase())))
             console.log(searchSuggestions)
         
         } else {
@@ -39,7 +41,7 @@ const ProductList =()=>{
     }
 
    
-      if (!excategories) return null;
+      if (!exproducts) return null;
    
         return (
             <div className="products-page page">
@@ -94,7 +96,7 @@ const ProductList =()=>{
                 
                 <div className="productList" ref={productsListDiv}>
                     <h5 className="">{totalProducts.length} total products</h5>
-                    <ProductsTable className="table table-striped" columnList={columnList}  actionLinkPrefix="" table="products" setProducts={setProducts}></ProductsTable>
+                    <ProductsTable className="table table-striped" columnList={columnList}  products={exproducts}></ProductsTable>
                 </div>
             
                 

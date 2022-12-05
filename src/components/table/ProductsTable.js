@@ -2,7 +2,7 @@ import React from "react";
 import TableHead from "./TableHead";
 import TdTag from "./TdTag"
 import {db} from "../../data/db";
-import { existingProducts } from "../../data/dbFunctions";
+import { existingProducts, removeFromDb } from "../../data/dbFunctions";
 
 
 
@@ -11,15 +11,10 @@ const ProductsTable=(props)=>{
     
       const exproducts = existingProducts()
      
-
-      const remove=(index)=>{
-      db.exproducts.where("id").equals(index).delete();
-      console.log(index);
-      }
-
-      if (!exproducts) return null;
-      else { 
-        props.setProducts(exproducts)
+      const remove=removeFromDb
+      console.log(props.products)
+     
+        
         return (
             
             <table className={props.className} >
@@ -27,7 +22,7 @@ const ProductsTable=(props)=>{
                 <tbody>
                         {
                        
-                       exproducts.map((data, index) => {
+                       props.products.map((data, index) => {
                             return (
                             <tr key={index} className="table-row" >
                                 {
@@ -53,9 +48,10 @@ const ProductsTable=(props)=>{
                     }
                 </tbody>
             </table>
-        ) }
+        ) 
+    }
     
-}
+
 
 // Table.defaultProps = {
 //     allowAction: true

@@ -83,7 +83,7 @@ const InvoiceList=()=>{
                 </div>
                 <div className="productList" ref={productsListDiv}>
                     <h5 className="">{totalInvoices.length} total invoices</h5>
-                    <InvoicesTable className="table table-striped" columnList={columnList}  setInvoices={setInvoices}></InvoicesTable>
+                    <InvoicesTable className="table table-striped" columnList={columnList}  invoices={exinvoices}></InvoicesTable>
                 </div>    
             </div>
         ) 

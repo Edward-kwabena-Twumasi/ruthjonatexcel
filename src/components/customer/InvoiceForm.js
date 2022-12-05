@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import AnchorTag from "../../components/Anchortag";
 import Button from "../Button";
 import InputFormGroup from "../input/InputFormGroup";
@@ -7,28 +7,42 @@ import SearchDataTable from "../table/SearchDataTable";
 import { existingProducts, existingCategories } from "../../data/dbFunctions";
 import TableHead from "../table/TableHead";
 import TdTag from "../table/TdTag";
+import useInvoiceItemsStore from "../../data/temporaryStore";
 
 
 
-const InvoiceForm =()=>{
+
+const InvoiceForm = ()=>{
     
        const columnList = ["ID", "Name","Price" ,"Stock" ,"Quantiy", "Action"];
-       const exproducts = existingProducts()
+       const invoiceItemsList = ["ID", "Name", "Quantity", "Price", "Sub total"];
+
+       let exproducts = existingProducts()
        const excategories=existingCategories()
-       const tableData = [
-            {"id": 1, "name": "USB 2.0 to Sata 7+15 Pin 2.5 Converter ..", "stock": 5, "price": "238.00"},
-            {"id": 2, "name": "FANTECH VX7 CRYPTO GAMING MOUSE ..", "stock": 20, "price": "980.00"},
-            {"id": 3, "name": "Cake decoration turntable - 28cm and 3 pieces set ..", "stock": 20, "price": "305.00"},
-            {"id": 4, "name": "Stylish White Sunglasses ..", "stock": 10, "price": "139.00"},
-        ]
-        const invoiceColumnList = ["ID", "Name", "Quantity", "Price", "Sub total"];
+      
+       const invoiceItems=useInvoiceItemsStore((state) => state.items)
+       
+       const nameField=useRef();
+       let [products,setProducts]=useState([]);
+       
+       useEffect(()=>{
+        products=exproducts
+        setProducts(products)
         
-   
+       },[exproducts])
 
-
-        if (exproducts==null) {
-          return null  
+       const filterProducts=(query)=>{
+        if (query.toString().length>0) {
+            setProducts(products.filter(product=>product.name.toLowerCase().includes(query.toLowerCase())))
+        } else {
+            products=exproducts
+            setProducts(products)
         }
+       }
+       
+
+        if (exproducts==null) return null  
+        
         return (
             <div className="invoice-form page">
                <div className="w-100 mb-5">
@@ -53,11 +67,11 @@ const InvoiceForm =()=>{
                                 <h5 className="p-3">Selected Products</h5>
                                 {
                                      <table className={"table table-striped"} >
-                                     <TableHead columnList={invoiceColumnList}></TableHead>
+                                     <TableHead columnList={invoiceItemsList}></TableHead>
                                      <tbody>
                                          {
                                              
-                                            exproducts.map((data, index) => {
+                                            invoiceItems.map((data, index) => {
                                                  return (
                                                  <tr key={index} className="table-row" >
                                                      {
@@ -109,7 +123,10 @@ const InvoiceForm =()=>{
                                                 <p><b>Search Box</b></p>
                                             </div>
                                             <div className="col-3">
-                                                <InputFormGroup labelClassName="sr-only" inputClassName="form-control form-control-sm" placeholder="Product Name"/>
+                                                <div className="form-group">
+                                                    <label className="sr-only">Product name</label>
+                                                    <input className="form-control  form-control-sm" placeholder="product name" ref={nameField} onChange={()=>filterProducts(nameField.current.value)}></input>
+                                                </div>
                                             </div>
                                             <div className="col-3">
                                                 <InputFormGroup labelClassName="sr-only" inputClassName="form-control  form-control-sm" placeholder="Product Code"/>
@@ -123,7 +140,7 @@ const InvoiceForm =()=>{
                                             
                                         </div>
                                         <div className="w-100">
-                                            <SearchDataTable className="table table-sm search-tb-font table-striped" columnList={columnList} tableData={exproducts} actionLinkPrefix=""/>
+                                            <SearchDataTable className="table table-sm search-tb-font table-striped" columnList={columnList} tableData={products==null?exproducts:products} actionLinkPrefix=""/>
                                         </div>
                                     </div>
                                 </div>
