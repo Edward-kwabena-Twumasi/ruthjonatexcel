@@ -1,15 +1,37 @@
-import React, {Component} from "react";
-import PageHeader from "../../components/PageHeader";
-import { totalCategories, totalProducts } from "../../data/dbFunctions";
+import React, {useEffect,useState} from "react";
+import { totalCategories, totalProducts,totalInvoices } from "../../data/dbFunctions";
 
-class DashboardPage extends Component{
-    constructor(props){
-        super(props);
-        this.userRole = "owner";
-    }
+const DashboardPage =()=>{
+    let categoriesCount,productsCount,invoicesCount=0;
+    const [[allCategories,allProducts,allInvoices],setCounts]=useState([0,0,0])
 
+    useEffect(()=>{
+        let catsresult,prosresult=0;
+        categoriesCount= totalCategories()
+        categoriesCount.then((count) => {
+         catsresult=count;
+        setCounts([count,0,0])
+        }).catch((err) => {
+            
+        });  
 
-    render(){
+        productsCount= totalProducts()
+        productsCount.then((count) => {
+         prosresult=count  
+        setCounts([catsresult,count,0])
+        }).catch((err) => {
+            
+        });
+        
+        invoicesCount= totalInvoices()
+        invoicesCount.then((count) => {
+           
+        setCounts([catsresult,prosresult,count])
+        }).catch((err) => {
+            
+        }); 
+    },[])
+   
         return (
             <div className="dash-page page">
                 <div className="">
@@ -21,19 +43,19 @@ class DashboardPage extends Component{
                             <div className="col-4 ">
                                 <div className="dash-summary-cell card">
                                     <p><b>All Products</b></p>
-                                    <p>{}</p>
+                                    <p>{allProducts}</p>
                                 </div>
                             </div>
                             <div className="col-4 ">
                                 <div className="dash-summary-cell card">
                                     <p><b>All Categories</b></p>
-                                    <p>{}</p>
+                                    <p>{allCategories}</p>
                                 </div>
                             </div>
                             <div className="col-4 ">
                                 <div className="dash-summary-cell card">
-                                    <p><b>Sold today</b></p>
-                                    <p>50</p>
+                                    <p><b>All invcoices</b></p>
+                                    <p>{allInvoices}</p>
                                 </div>
                             </div>
                         </div>
@@ -47,6 +69,6 @@ class DashboardPage extends Component{
             </div>
         ) 
     }
-}
+
 
 export default DashboardPage;

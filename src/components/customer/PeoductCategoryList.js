@@ -2,6 +2,7 @@ import React  from "react";
 import Table from "../../components/table/Table";
 import { useState,useRef } from "react";
 import { addToCategory } from "../../data/dbFunctions";
+import {AiOutlineClose} from "react-icons/ai"
 
 
 
@@ -15,46 +16,42 @@ const ProductCategoryList =()=>{
       
     const [status, setStatus] = useState("");
     const categoryName=useRef();
+    const modalRef=useRef();
       
     const addCategory=addToCategory(setStatus)
+    const toggleModal=(val)=>{
+        modalRef.current.classList.toggle("show-modal",val)
+    }
     
    
         return (
             <div className="category-list-page page">
                 <div className="row title-n-button">
                     <h3 >Categories</h3>
-                    <button  type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Add new</button>
+                    <button  type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onClick={()=>toggleModal(true)}>Add new</button>
                     {/* <AnchorTag link="/app/shop/product-category/create" className="btn btn-warning " itemValue="Add Category"></AnchorTag> */}
                 </div>
                 <h5>{status}</h5>
                 <Table className="table table-striped" columnList={columnList}  actionLinkPrefix="" data="categories"></Table>
                      
                      {/* Modal */}
-                    <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div className="modal-dialog modal-dialog-centered" role="document">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <h5 className="modal-title" id="exampleModalLongTitle">New category</h5>
-                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
+                    
+                    <div className=" add-category-modal" ref={modalRef}>
+                        
+                                <div className="modal-head">
+                                    <h5 className="" id="exampleModalLongTitle">New category</h5>
+                                     <AiOutlineClose onClick={()=>toggleModal(false)}></AiOutlineClose>
                                 </div>
-                                <div className="modal-body">
-                                    <form>
-                                        <div className="form-group row">
-                                            <label  className="col-sm-2 col-form-label">Name</label>
-                                            <div className="col-sm-10">
-                                              <input type="text"  className="form-control" id="categoryNmae" placeholder="Oils" ref={categoryName}/>
-                                            </div>
-                                        </div>
-                                    </form>
+                                <div className="">
+                                    
+                                    <input type="text"  className="form-control" id="categoryNmae" placeholder="Category name" ref={categoryName}/>
+                                            
                                 </div>
-                                <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <div className="modal-actions">
+                                    <button type="button" className="btn btn-secondary" onClick={()=>toggleModal(false)} >Close</button>
                                     <button type="button" className="btn btn-primary" onClick={()=>addCategory([categoryName.current.value,"0"])} >Submit</button>
                                 </div>
-                            </div>
-                        </div>
+                           
                     </div>
             </div>
         ) 

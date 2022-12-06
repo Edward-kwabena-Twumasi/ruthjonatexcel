@@ -1,12 +1,21 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import {db} from "./db";
 
-// export const totalCategories=()=>{ 
-//    return db.categories.count()
-//   };
-// export const totalProducts=()=>{
-//   return db.products.count()
-// };
+export const totalCategories=()=>{ 
+  
+    return db.categories.count((val)=>val)
+    
+  };
+export const totalProducts=()=>{
+ 
+  return db.products.count((val1)=>val1)
+   
+};
+export const totalInvoices=()=>{
+ 
+  return db.invoices.count((val1)=>val1)
+   
+};
 
 export const removeFromDb=(id)=>{
     db.exproducts.where("id").equals(id).delete();
@@ -38,12 +47,17 @@ export const addToCategory=(setStatus)=>{
     try {
 
         // Add the new categoriy!
-        const id = await db.categories.add({
-          name,
-          total_products
-        });
-  
-        setStatus(`Category ${name} successfully added. Got id ${id}`);
+        if (name.length>0) {
+          const id = await db.categories.add({
+            name,
+            total_products
+          });
+    
+          setStatus(`Category ${name} successfully added. Got id ${id}`);
+        } else {
+          setStatus(`Please provide category name`);
+        }
+       
        
       } catch (error) {
         setStatus(`Failed to add ${name}: ${error}`);
