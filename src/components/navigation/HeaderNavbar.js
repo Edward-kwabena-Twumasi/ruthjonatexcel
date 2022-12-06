@@ -9,7 +9,7 @@ class HeaderNavBar extends Component{
         this.userRole = "admin";
     
         if(this.userRole === "admin"){
-            this.navbarText = "Ruthjo Stock Manager"
+            this.navbarText = "Ruthjo Stock"
         }
         else{
             this.navbarText = "Inventory Management"
@@ -19,15 +19,15 @@ class HeaderNavBar extends Component{
 
     render(){
             return (
-                <nav className="navbar navbar-expand-lg top-nav">
-                    <Link className="navbar-brand px-3 text-light" to="/">{this.navbarText}</Link>
+                <nav className="navbar navbar-expand-lg top-nav p-9">
+                    <Link className="navbar-brand px-3 text-light font-bold " to="/">{this.navbarText}</Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ml-auto">
-                            <NavLiTag link="/login" className="nav-link text-light" itemValue="Logout"></NavLiTag>
+                            <NavLiTag link="/login" className="nav-link text-light " itemValue="Logout"></NavLiTag>
                         </ul>
                     </div>
                 </nav>

@@ -15,7 +15,7 @@ class ShopView extends Component{
                 
                 <h3 className="ml-3 page-title">Shop Details</h3>
                
-                <div className="w-75">
+                <div className="w-100">
                     <form>
                         <div className="container-fluid">
                             <div className="row">

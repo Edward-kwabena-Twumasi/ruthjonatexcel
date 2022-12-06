@@ -34,7 +34,6 @@ const InvoicesTable=(props)=>{
                                     })
                                 }
                                 <td scope="col" className="row">
-                                    <MdOutlineModeEdit></MdOutlineModeEdit>
                                     <BsEye></BsEye>
                                     <AiOutlineDelete onClick={()=>remove(data["id"])}></AiOutlineDelete>
                                     </td>
