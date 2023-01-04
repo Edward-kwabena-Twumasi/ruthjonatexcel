@@ -2,7 +2,7 @@ import React from "react";
 import TableHead from "./TableHead";
 import TdTag from "./TdTag"
 
-import { existingCategories, removeFromDb } from "../../data/dbFunctions";
+import { existingCategories, removeCategory } from "../../data/dbFunctions";
 import { BsEye } from "react-icons/bs";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -13,7 +13,7 @@ const Table=(props)=>{
     
     const excategories = existingCategories();
 
-    const remove=removeFromDb
+    const remove=removeCategory
 
     if (!excategories) return null;
         return (

@@ -27,19 +27,15 @@ const InvoiceList=()=>{
                 </div>
                 <div className="row mb-5">
                     <div className="col-12">
-                        <p><b>Search Invoice</b></p>
+                        <p className="bold">Filter</p>
                     </div>
-                    <div className="col-2">
-                        <InputFormGroup labelClassName="sr-only" inputClassName="form-control form-control-sm" placeholder="Customer Name"/>
+                    <div className="col-3">
+                        <InputFormGroup labelClassName="sr-only" inputClassName="form-control nice-border" placeholder="Customer Name"/>
                     </div>
-                    <div className="col-2">
-                        <InputFormGroup labelClassName="sr-only" inputClassName="form-control form-control-sm" placeholder="Invoice ID"/>
+                    <div className="col-3">
+                        <InputFormGroup labelClassName="sr-only" inputClassName="form-control nice-border" placeholder="Invoice ID"/>
                     </div>
-                    <div className="col-2">
-                        <div className="form-group">
-                            <input type="submit" className="btn btn-sm btn-success" value="Search"/>
-                        </div>
-                    </div>
+                    
                 </div>
                 
                 <div className="productList" ref={productsListDiv}>

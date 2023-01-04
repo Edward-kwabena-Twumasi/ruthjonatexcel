@@ -25,33 +25,33 @@ const ProductForm =()=>{
             <div className="create-product-page page">
                 <div className="w-100 mb-5">
                     <AnchorTag link="/app/shop/product/list" className="btn btn-primary float-right" itemValue="Back to Product List"></AnchorTag>
-                    <h4>Create Product</h4>
+                    <h2 className="bold ml-3">Create Product</h2>
                 </div>
                 <div className="w-80">
                     <form>
                         <div className="container-fluid">
-                           <div className="form-group col-12">
-                                    <label  className="col-sm-2 col-form-label">Name</label>
+                           <div className="form-group col-6">
+                                    <label  className="col-form-label">Name</label>
                                     <div className="">
-                                        <input type="text"  className="form-control" id="categoryNmae" placeholder="product name" ref={nameRef}/>
+                                        <input type="text"  className="form-control nice-border" id="categoryNmae" placeholder="product name" ref={nameRef}/>
                                     </div>
                             </div>
-                            <div className="row container-fluid">
-                                <div className="form-group  col-6">
-                                        <label  className="">Price</label>
-                                        <div className="">
-                                            <input type="text"  className="form-control" id="categoryNmae" placeholder="product price" ref={priceRef}/>
-                                        </div>
-                                </div>
-                                <div className="form-group  col-6">
-                                        <label  className="">Total stock</label>
-                                        <div className="">
-                                            <input type="text"  className="form-control" id="categoryNmae" placeholder="total stock" ref={stockRef}/>
-                                        </div>
-                                </div>
+                           
+                            <div className="form-group  col-6">
+                                    <label  className="col-form-label">Price</label>
+                                    <div className="">
+                                        <input type="text"  className="form-control nice-border" id="categoryNmae" placeholder="product price" ref={priceRef}/>
+                                    </div>
                             </div>
-                            <div className="row selection container-fluid m-1">
-                                <select  id="selection " className="col-4" ref={categoryRef}>
+                            <div className="form-group  col-6">
+                                    <label  className="">Total stock</label>
+                                    <div className="">
+                                        <input type="text"  className="form-control nice-border" id="categoryNmae" placeholder="total stock" ref={stockRef}/>
+                                    </div>
+                            </div>
+                           
+                            <div className="row selection container-fluid m-1 col-6">
+                                <select  id="selection " className="col-4 nice-border" ref={categoryRef}>
                                     <option>Choose...</option>
                                     {
                                     excategories.map((data, index) => {

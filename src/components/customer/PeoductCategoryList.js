@@ -25,7 +25,7 @@ const ProductCategoryList =()=>{
     
    
         return (
-            <div className="category-list-page page">
+            <div className=" page">
                 <div className="row title-n-button">
                     <h3 >Categories</h3>
                     <button  type="button" className="btn btn-primary"  onClick={()=>toggleModal(true)}>Add new</button>

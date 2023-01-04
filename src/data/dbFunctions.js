@@ -18,9 +18,13 @@ export const totalInvoices=()=>{
 };
 
 export const removeFromDb=(id)=>{
-    db.exproducts.where("id").equals(id).delete();
+    db.products.where("id").equals(id).delete();
     console.log(id);
     }
+    export const removeCategory=(id)=>{
+      db.categories.where("id").equals(id).delete();
+      console.log(id);
+      }  
 
 export const existingCategories = ()=>{
     return useLiveQuery(

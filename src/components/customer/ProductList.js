@@ -4,6 +4,7 @@ import InputFormGroup from "../../components/input/InputFormGroup";
 import SelectFormGroup from "../../components/input/SelectFormGroup";
 import ProductsTable from "../table/ProductsTable";
 import { existingCategories, existingProducts, removeFromDb } from "../../data/dbFunctions";
+import { Link } from "react-router-dom";
 
 
 const ProductList =()=>{
@@ -41,28 +42,24 @@ const ProductList =()=>{
             <div className="products-page page">
                 <div className="row title-n-button">
                     <h3 >Products</h3>
-                    <AnchorTag link="/app/shop/product/create" className="btn btn-sm btn-warning " itemValue="Create Product"></AnchorTag>
+                    <Link to="/app/shop/product/create" className="btn " >Add product</Link>
                 </div>
-                <div className="row mb-5">
-                    <div className="col-12">
-                        <p><b>Search Box</b></p>
-                    </div>
-                    <div className="col-2">
-                        <div className="form-group">
-                            <input type="text" onChange={()=>filterProducts(nameField.current.value)} className="form-control form-control-sm" placeholder="Product Name"  ref={nameField}/> 
+                <div className="col mb-5 w-100">
+                    
+                    <p className="bold">Filter</p>
+                   
+                    <div className="row col-12 w-100">
+                        <div className="col-3">
+                            <div className="form-group">
+                                <input type="text" onChange={()=>filterProducts(nameField.current.value)} className="form-control form-control-md nice-border" placeholder="Product Name"  ref={nameField}/> 
+                            </div>
                         </div>
-                    </div>
-                    <div className="col-2">
-                        <SelectFormGroup labelClassName="mb-2" label="" selectClassName="custom-select custom-select-sm" selectData={excategories==null?[]:excategories}/>
-                    </div>
-                    <div className="col-2">
-                        <InputFormGroup labelClassName="mb-2" inputClassName="form-control form-control-sm" placeholder="Product Price"/>
-                    </div>
-                    <div className="col-2">
-                        <div className="form-group">
-                            <input type="submit" className="w-100 btn btn-sm btn-success" value="Search"/>
+                        <div className="col-3">
+                            <SelectFormGroup labelClassName="mb-2" label="" selectClassName="custom-select custom-select-sm nice-border" selectData={excategories==null?[]:excategories}/>
                         </div>
+                        
                     </div>
+                                 
                 </div>
                 
                 

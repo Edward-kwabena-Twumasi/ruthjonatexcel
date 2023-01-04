@@ -64,6 +64,44 @@ const InvoiceForm = ()=>{
                     <AnchorTag link="/app/shop/invoice/list" className="btn btn-sm btn-primary float-right" itemValue="Back to Invoice List"></AnchorTag>
                     <h4>Create Invoice</h4>
                 </div>
+                <div className="add-invoiceitem-modal" ref={modalRef}>
+        <div className=" " >
+            <div className="">
+                <div className="">
+                    <h5 className="" id="exampleModalCenterTitle">Search & Add Product</h5>
+                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                    <span  onClick={()=>toggleModal(false)}>&times;</span>
+                    </button>
+                </div>
+                <div className="">
+                    <div className="form-row mb-5 modal-search-box">
+                        <div className="col-12">
+                            <p><b>Search Box</b></p>
+                        </div>
+                        <div className="col-3">
+                            <div className="form-group">
+                                <label className="sr-only">Product name</label>
+                                <input className="form-control  form-control-sm" placeholder="product name" ref={nameField} onChange={()=>filterProducts(nameField.current.value)}></input>
+                            </div>
+                        </div>
+                        <div className="col-3">
+                            <InputFormGroup labelClassName="sr-only" inputClassName="form-control  form-control-sm" placeholder="Product Code"/>
+                        </div>
+                        <div className="col-3">
+                            <SelectFormGroup labelClassName="sr-only" placeholder="Category" selectClassName="custom-select custom-select-sm mr-sm-2" selectData={excategories==null?[]:excategories}/>
+                        </div>
+                        <div className="col-3">
+                            <Button className="btn btn-sm btn-warning w-75" text="Search"/>
+                        </div>
+                        
+                    </div>
+                    <div className="w-100">
+                        <SearchDataTable className="table table-sm search-tb-font table-striped" columnList={columnList} tableData={products==null?exproducts:products} actionLinkPrefix=""/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
                 <div className="w-75">
                     <div className="container-fluid">
                         <div className="row mb-5">
@@ -78,7 +116,7 @@ const InvoiceForm = ()=>{
                                 </div>
                             </div>
 
-                            <div className="col-12 mt-4">
+                        <div className="col-12 mt-4">
                                 <h5 className="p-3">Selected Products</h5>
                                 {
                                    
@@ -98,14 +136,6 @@ const InvoiceForm = ()=>{
                                                              return <TdTag key={index} value={data[key]} isAction="false"></TdTag>
                                                          })
                                                      }
-                                                     {/* <td scope="col" className="row">
-                                                         <h5>Edit</h5>
-                                                         <h5>view</h5>
-                                                         <h5 onClick={()=>{}}>Remove</h5>
-                                                         </td> */}
-                                                     
-                     
-                                                     {/* {renderAction(data)} */}
                                                      
                                                      
                                                  </tr>
@@ -126,44 +156,7 @@ const InvoiceForm = ()=>{
                             </div>
                         </div>
                         {/* Modal */}
-                        <div className="add-invoiceitem-modal" ref={modalRef}>
-                            <div className=" " >
-                                <div className="">
-                                    <div className="">
-                                        <h5 className="" id="exampleModalCenterTitle">Search & Add Product</h5>
-                                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                        <span  onClick={()=>toggleModal(false)}>&times;</span>
-                                        </button>
-                                    </div>
-                                    <div className="">
-                                        <div className="form-row mb-5 modal-search-box">
-                                            <div className="col-12">
-                                                <p><b>Search Box</b></p>
-                                            </div>
-                                            <div className="col-3">
-                                                <div className="form-group">
-                                                    <label className="sr-only">Product name</label>
-                                                    <input className="form-control  form-control-sm" placeholder="product name" ref={nameField} onChange={()=>filterProducts(nameField.current.value)}></input>
-                                                </div>
-                                            </div>
-                                            <div className="col-3">
-                                                <InputFormGroup labelClassName="sr-only" inputClassName="form-control  form-control-sm" placeholder="Product Code"/>
-                                            </div>
-                                            <div className="col-3">
-                                                <SelectFormGroup labelClassName="sr-only" placeholder="Category" selectClassName="custom-select custom-select-sm mr-sm-2" selectData={excategories==null?[]:excategories}/>
-                                            </div>
-                                            <div className="col-3">
-                                                <Button className="btn btn-sm btn-warning w-75" text="Search"/>
-                                            </div>
-                                            
-                                        </div>
-                                        <div className="w-100">
-                                            <SearchDataTable className="table table-sm search-tb-font table-striped" columnList={columnList} tableData={products==null?exproducts:products} actionLinkPrefix=""/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                      
 
                     </div>
                 </div>
