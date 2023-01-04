@@ -22,7 +22,7 @@ const InvoiceList=()=>{
         return (
             <div className="invoices-page page">
                 <div className="w-100 mb-5">
-                    <AnchorTag link="/app/shop/invoice/create" className="btn btn-sm btn-warning float-right" itemValue="Create Invocie"></AnchorTag>
+                    <AnchorTag link="/app/shop/invoice/create" className="btn btn-sm btn-info float-right" itemValue="Create Invoice"></AnchorTag>
                     <h4>Invoices</h4>
                 </div>
                 <div className="row mb-5">

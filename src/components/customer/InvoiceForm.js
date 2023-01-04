@@ -50,7 +50,11 @@ const InvoiceForm = ()=>{
             setProducts(products)
         }
        }
-       
+        const modalRef=useRef();
+      
+        const toggleModal=(val)=>{
+            modalRef.current.classList.toggle("show-modal",val)
+        }
 
         if (exproducts==null) return null  
         
@@ -65,7 +69,7 @@ const InvoiceForm = ()=>{
                         <div className="row mb-5">
                             <div className="col-3">
                                 <div className="form-group">
-                                    <Button className="btn btn-sm btn-success w-100" text="Add Item" dataToggle="modal" dataTarget="#exampleModalCenter"/>
+                                    <button className="btn btn-sm btn-success w-100"   onClick={()=>toggleModal(true)}>Add item</button>
                                 </div>
                             </div>
                             <div className="col-3">
@@ -122,16 +126,16 @@ const InvoiceForm = ()=>{
                             </div>
                         </div>
                         {/* Modal */}
-                        <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div className="modal-dialog modal-xl " role="document">
-                                <div className="modal-content">
-                                    <div className="modal-header">
-                                        <h5 className="modal-title" id="exampleModalCenterTitle">Search & Add Product</h5>
+                        <div className="add-invoiceitem-modal" ref={modalRef}>
+                            <div className=" " >
+                                <div className="">
+                                    <div className="">
+                                        <h5 className="" id="exampleModalCenterTitle">Search & Add Product</h5>
                                         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
+                                        <span  onClick={()=>toggleModal(false)}>&times;</span>
                                         </button>
                                     </div>
-                                    <div className="modal-body">
+                                    <div className="">
                                         <div className="form-row mb-5 modal-search-box">
                                             <div className="col-12">
                                                 <p><b>Search Box</b></p>

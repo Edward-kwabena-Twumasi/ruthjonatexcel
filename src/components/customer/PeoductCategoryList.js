@@ -28,7 +28,7 @@ const ProductCategoryList =()=>{
             <div className="category-list-page page">
                 <div className="row title-n-button">
                     <h3 >Categories</h3>
-                    <button  type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onClick={()=>toggleModal(true)}>Add new</button>
+                    <button  type="button" className="btn btn-primary"  onClick={()=>toggleModal(true)}>Add new</button>
                     {/* <AnchorTag link="/app/shop/product-category/create" className="btn btn-warning " itemValue="Add Category"></AnchorTag> */}
                 </div>
                 <h5>{status}</h5>
