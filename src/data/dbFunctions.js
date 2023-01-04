@@ -21,10 +21,14 @@ export const removeFromDb=(id)=>{
     db.products.where("id").equals(id).delete();
     console.log(id);
     }
-    export const removeCategory=(id)=>{
-      db.categories.where("id").equals(id).delete();
-      console.log(id);
-      }  
+export const removeCategory=(id)=>{
+  db.categories.where("id").equals(id).delete();
+  console.log(id);
+  } 
+export const removeInvoice=(id)=>{
+  db.invoices.where("id").equals(id).delete();
+  console.log(id);
+  }  
 
 export const existingCategories = ()=>{
     return useLiveQuery(

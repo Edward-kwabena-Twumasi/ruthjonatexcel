@@ -38,30 +38,30 @@ const DashboardPage =()=>{
                     <h3 className="ml-3 page-title">Dashboard</h3>
 
                     <div className="container-fluid dash-body">
-                        <h4>summary</h4>
+                        <h4>Summary</h4>
                         <div className="row summary">
                             <div className="col-4 ">
                                 <div className="dash-summary-cell card">
-                                    <p><b>All Products</b></p>
-                                    <p>{allProducts}</p>
+                                    <p className="card-title">All Products</p>
+                                    <p className="display-count">{allProducts}</p>
                                 </div>
                             </div>
                             <div className="col-4 ">
                                 <div className="dash-summary-cell card">
-                                    <p><b>All Categories</b></p>
-                                    <p>{allCategories}</p>
+                                    <p className="card-title">All Categories</p>
+                                    <p className="display-count">{allCategories}</p>
                                 </div>
                             </div>
                             <div className="col-4 ">
                                 <div className="dash-summary-cell card">
-                                    <p><b>All invcoices</b></p>
-                                    <p>{allInvoices}</p>
+                                    <p className="card-title">All invcoices</p>
+                                    <p className="display-count">{allInvoices}</p>
                                 </div>
                             </div>
                         </div>
-                        <h4 className="mt-3">statistics</h4>
+                        <h4 className="mt-3">Statistics</h4>
                         <div className="statistics">
-
+                        <div>Comprehensive statistics for shop...</div>
                         </div>
                     </div>
                 </div>

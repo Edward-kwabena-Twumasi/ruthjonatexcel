@@ -1,7 +1,7 @@
 import React from "react";
 import TableHead from "./TableHead";
 import TdTag from "./TdTag"
-import {  removeFromDb } from "../../data/dbFunctions";
+import {  removeInvoice } from "../../data/dbFunctions";
 import { BsEye } from "react-icons/bs";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -14,7 +14,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 const InvoicesTable=(props)=>{
     
 
-      const remove=removeFromDb
+      const remove=removeInvoice
 
     
         return (

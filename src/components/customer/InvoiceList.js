@@ -1,6 +1,6 @@
 import React,{useState,useRef} from "react";
 import AnchorTag from "../../components/Anchortag";
-import { existingInvoices, removeFromDb } from "../../data/dbFunctions";
+import { existingInvoices, removeInvoice } from "../../data/dbFunctions";
 import InputFormGroup from "../input/InputFormGroup";
 import InvoicesTable from "../table/InvoicesTable";
 
@@ -13,7 +13,7 @@ const InvoiceList=()=>{
   const nameField=useRef(); 
        
 
-   const remove=removeFromDb
+   const remove=removeInvoice
 
    const exinvoices =existingInvoices()
    
