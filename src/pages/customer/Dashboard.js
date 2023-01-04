@@ -35,10 +35,10 @@ const DashboardPage =()=>{
         return (
             <div className="dash-page page">
                 <div className="">
-                    <h3 className="ml-3 page-title">Dashboard</h3>
+                    <h3 className="ml-3 mb-3 page-title">Dashboard</h3>
 
                     <div className="container-fluid dash-body">
-                        <h4>Summary</h4>
+                        <h5 className="mb-3 light">Summary</h5>
                         <div className="row summary">
                             <div className="col-4 ">
                                 <div className="dash-summary-cell card">
@@ -59,7 +59,7 @@ const DashboardPage =()=>{
                                 </div>
                             </div>
                         </div>
-                        <h4 className="mt-3">Statistics</h4>
+                        <h5 className="mt-3 light">Statistics</h5>
                         <div className="statistics">
                         <div>Comprehensive statistics for shop...</div>
                         </div>

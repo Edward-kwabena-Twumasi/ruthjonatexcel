@@ -40,13 +40,13 @@ const ProductList =()=>{
    
         return (
             <div className="products-page page">
-                <div className="row title-n-button">
+                <div className="row title-n-button w-100">
                     <h3 >Products</h3>
                     <Link to="/app/shop/product/create" className="btn " >Add product</Link>
                 </div>
                 <div className="col mb-5 w-100">
                     
-                    <p className="bold">Filter</p>
+                    <h5 className="light">Filter</h5>
                    
                     <div className="row col-12 w-100">
                         <div className="col-3">
@@ -64,7 +64,7 @@ const ProductList =()=>{
                 
                 
                 <div className="productList" ref={productsListDiv}>
-                    <h5 className="">{exproducts.length} total products</h5>
+                    <h5 className="mb-3 light">{exproducts.length}  products</h5>
                     <ProductsTable className="table table-striped" columnList={columnList}  products={products==null? exproducts:products}></ProductsTable>
                 </div>
             

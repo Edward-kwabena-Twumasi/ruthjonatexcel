@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 
 class NavLiTag extends Component{
@@ -10,7 +10,7 @@ class NavLiTag extends Component{
     render(){
         return (
             <li className="nav-item active">
-                <Link className={this.props.className} to={this.props.link}>{this.props.itemValue}</Link>
+                <NavLink activeClassName="active-link" className={this.props.className} to={this.props.link}>{this.props.itemValue}</NavLink >
             </li>
         )
         

@@ -13,45 +13,48 @@ class ShopView extends Component{
         return (
             <div className="shop-view-page page">
                 
+                <div>
                 <h3 className="ml-3 page-title">Shop Details</h3>
+                </div>
+                
                
                 <div className="w-100">
                     <form>
                         <div className="container-fluid">
                             <div className="row">
                                 <div className="col-12">
-                                <h5 className="mt-2 mb-2">Shop Owner Information</h5>
+                                <h5 className="mt-2 mb-3 light">Shop Owner Information</h5>
                                 </div>
                                 <div className="col-6">
-                                    <InputFormGroup inputClassName="form-control" labelClassName="mb-2" isReadOnly={true} value="Maa Ruth" label="First Name" />
+                                    <InputFormGroup inputClassName="form-control nide-border" labelClassName="mb-2" isReadOnly={true} value="Maa Ruth" label="First Name" />
                                 </div>
                                 <div className="col-6">
-                                    <InputFormGroup inputClassName="form-control" labelClassName="mb-2" isReadOnly={true} value="Ruth" label="Last Name" />
+                                    <InputFormGroup inputClassName="form-control nide-border" labelClassName="mb-2" isReadOnly={true} value="Ruth" label="Last Name" />
                                 </div>
                                 <div className="col-6">
-                                    <InputFormGroup inputClassName="form-control" labelClassName="mb-2" isReadOnly={true} value="ruthjonatexcel@gmail.com" label="Email" />
+                                    <InputFormGroup inputClassName="form-control nide-border" labelClassName="mb-2" isReadOnly={true} value="ruthjonatexcel@gmail.com" label="Email" />
                                 </div>
                                 <div className="col-6">
-                                    <InputFormGroup inputClassName="form-control" labelClassName="mb-2" isReadOnly={true} value="Active" label="Status" />
+                                    <InputFormGroup inputClassName="form-control nide-border" labelClassName="mb-2" isReadOnly={true} value="Active" label="Status" />
                                 </div>
 
 
                                 <div className="col-12 mt-3">
-                                <h5 className="mt-2 mb-2">Shop Information</h5>
+                                <h5 className="mt-2 mb-3 light">Shop Information</h5>
 
                                 </div>
                                 <div className="col-6">
-                                    <InputFormGroup inputClassName="form-control" labelClassName="mb-2" isReadOnly={true} value="Ruthjonatexcel Organic Food Shop" label="Shop Name" />
+                                    <InputFormGroup inputClassName="form-control nide-border" labelClassName="mb-2" isReadOnly={true} value="Ruthjonatexcel Organic Food Shop" label="Shop Name" />
                                     
                                 </div>
                                 <div className="col-6">
-                                    <InputFormGroup inputClassName="form-control" labelClassName="mb-2" isReadOnly={true} value="2" label="Total Employees" />
+                                    <InputFormGroup inputClassName="form-control nide-border" labelClassName="mb-2" isReadOnly={true} value="2" label="Total Employees" />
                                 </div>
                                 <div className="col-6">
-                                    <InputFormGroup inputClassName="form-control" labelClassName="mb-2" isReadOnly={true} value="500" label="Total Products" />
+                                    <InputFormGroup inputClassName="form-control nide-border" labelClassName="mb-2" isReadOnly={true} value="500" label="Total Products" />
                                 </div>
                                 <div className="col-6">
-                                    <InputFormGroup inputClassName="form-control" labelClassName="mb-2" isReadOnly={true} value="Active" label="Status" />
+                                    <InputFormGroup inputClassName="form-control nide-border" labelClassName="mb-2" isReadOnly={true} value="Active" label="Status" />
                                 </div>
 
                                 <div className="col-12 mt-4">

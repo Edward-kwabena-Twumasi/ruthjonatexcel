@@ -11,10 +11,12 @@
 .top-nav{
  padding: 10px;
  background-color: green;
- margin: 10px;
- border-radius: 5px;
  font-weight: bolder;
+ height: 80px;
  
+}
+.light{
+    font-weight: 300;
 }
 .main-body{
     width: 85%;
@@ -87,12 +89,7 @@ input{
     justify-content: space-between;
     padding: 10px;
 }
-.productList h5{
-font-size: 23;
-font-weight: bold;
-font-family: serif;
-margin-bottom: 5px;
-}
+
 .searchResults{
 background-color: white;
 border-radius: 10px;
@@ -107,10 +104,17 @@ box-shadow: 0px 4px 4px 0px rgba(10, 10, 10, 0.2);
 }
 .btn{
     padding: 3px 8px 3px 8px;
-    border-radius: 10px;
+    border-radius: 20px;
     color: white;
     font-weight: 500;
     background-color: green;
+}
+.active-link{
+    font-weight: bold;
+}
+.page div h3{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: green;
 }
 select{
     border: 5px;
@@ -128,21 +132,28 @@ select{
 .side-navigation{
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
     padding: 3px;
+}
+.record-display{
+ font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+ font-weight: 400;
+ font-size: 16px;
 }
 .nav-item{
     font-weight: semibold;
     color: green;
     padding: 6px;
+
     border-bottom: 1px  rgb(46, 46, 46);
 }
 .add-category-modal ,.add-invoiceitem-modal{
     position: absolute;
     z-index: 4;
-    padding: 20px 100px 20px 100px;
+    padding: 5px 30px 5px 30px;
     background-color: green;
-    margin-left: 10%;
+    margin-left: 20%;
+    
     background-color: white;
     border-radius: 10px;
     box-shadow: 0px 4px 4px 0px rgba(10, 10, 10, 0.2);
@@ -170,12 +181,17 @@ select{
 .modal-head{
     display: flex;
     justify-content: space-between;
+    align-content: items;
     width: 100%;
 
 }
+.close{
+    color: red;
+    font-size: 25px;
+}
 .modal-actions{
     display: flex;
-    justify-content: end;
+    justify-content: start;
 
     width: 100%;
     margin-top: 5px;

@@ -9,7 +9,7 @@ class TdTag extends Component{
 
     render(){
       
-            return <td scope="col">{this.props.value}</td>
+            return <td scope="col " className="record-display">{this.props.value}</td>
         
         
     }

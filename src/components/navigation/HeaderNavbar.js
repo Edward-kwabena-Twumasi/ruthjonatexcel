@@ -9,7 +9,7 @@ class HeaderNavBar extends Component{
         this.userRole = "admin";
     
         if(this.userRole === "admin"){
-            this.navbarText = "Ruthjo Stock"
+            this.navbarText = "Stock Manager"
         }
         else{
             this.navbarText = "Inventory Management"

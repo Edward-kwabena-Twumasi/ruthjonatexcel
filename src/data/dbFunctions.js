@@ -61,7 +61,7 @@ export const addToCategory=(setStatus)=>{
             total_products
           });
     
-          setStatus(`Category ${name} successfully added. Got id ${id}`);
+          setStatus(`Category ${name} successfully added.`);
         } else {
           setStatus(`Please provide category name`);
         }

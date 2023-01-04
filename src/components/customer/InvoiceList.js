@@ -21,13 +21,13 @@ const InvoiceList=()=>{
    if (!exinvoices) return null;
         return (
             <div className="invoices-page page">
-                <div className="w-100 mb-5">
+                <div className="w-100 mb-3">
                     <AnchorTag link="/app/shop/invoice/create" className="btn btn-sm btn-info float-right" itemValue="Create Invoice"></AnchorTag>
-                    <h4>Invoices</h4>
+                    <h3>Invoices</h3>
                 </div>
                 <div className="row mb-5">
                     <div className="col-12">
-                        <p className="bold">Filter</p>
+                        <h5 className="light">Filter</h5>
                     </div>
                     <div className="col-3">
                         <InputFormGroup labelClassName="sr-only" inputClassName="form-control nice-border" placeholder="Customer Name"/>
@@ -39,7 +39,7 @@ const InvoiceList=()=>{
                 </div>
                 
                 <div className="productList" ref={productsListDiv}>
-                    <h5 className="">{exinvoices.length} total invoices</h5>
+                    <h5 className="light">{exinvoices.length} invoices</h5>
                     <InvoicesTable className="table table-striped" columnList={columnList}  invoices={exinvoices}></InvoicesTable>
                 </div>    
             </div>

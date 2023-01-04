@@ -2,7 +2,7 @@ import React  from "react";
 import Table from "../../components/table/Table";
 import { useState,useRef } from "react";
 import { addToCategory } from "../../data/dbFunctions";
-import {AiOutlineClose} from "react-icons/ai"
+import {AiFillCloseCircle, AiFillCloseSquare, AiOutlineClose} from "react-icons/ai"
 
 
 
@@ -26,13 +26,13 @@ const ProductCategoryList =()=>{
    
         return (
             <div className=" page">
-                <div className="row title-n-button">
+                <div className="row  title-n-button w-100">
                     <h3 >Categories</h3>
                     <button  type="button" className="btn btn-primary"  onClick={()=>toggleModal(true)}>Add new</button>
                     {/* <AnchorTag link="/app/shop/product-category/create" className="btn btn-warning " itemValue="Add Category"></AnchorTag> */}
                 </div>
-                <h5>{status}</h5>
-                <Table className="table table-striped" columnList={columnList}  actionLinkPrefix="" data="categories"></Table>
+                <h5 className="light">{status}</h5>
+                <Table className="table " columnList={columnList}  actionLinkPrefix="" data="categories"></Table>
                      
                      {/* Modal */}
                     
@@ -40,11 +40,11 @@ const ProductCategoryList =()=>{
                         
                                 <div className="modal-head">
                                     <h5 className="" id="exampleModalLongTitle">New category</h5>
-                                     <AiOutlineClose onClick={()=>toggleModal(false)}></AiOutlineClose>
+                                     <AiFillCloseCircle className="close" onClick={()=>toggleModal(false)}></AiFillCloseCircle >
                                 </div>
                                 <div className="">
                                     
-                                    <input type="text"  className="form-control" id="categoryNmae" placeholder="Category name" ref={categoryName}/>
+                                    <input type="text"  className="form-control w-100 nice-border" id="categoryNmae" placeholder="Category name" ref={categoryName}/>
                                             
                                 </div>
                                 <div className="modal-actions">

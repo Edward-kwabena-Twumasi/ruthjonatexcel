@@ -33,7 +33,7 @@ class InputFormGroup extends Component{
 }
 
 InputFormGroup.defaultProps = {
-    inputClassName: "form-control",
+    inputClassName: "form-control ",
     placeholder: "",
     label: "",
     value: "",
