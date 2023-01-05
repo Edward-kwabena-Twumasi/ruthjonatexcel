@@ -151,7 +151,7 @@ const InvoiceForm = ()=>{
                                  
                                 }
                                 {
-                                     <h3 className="total-display ">{getTotal(invoiceItems)}</h3>
+                                    
                                 }
                             </div>
                         </div>

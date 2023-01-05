@@ -24,7 +24,7 @@ const Table=(props)=>{
                         
                        excategories.map((data, index) => {
                             return (
-                            <tr key={index} className="table-row" >
+                            <tr key={index} className="table-row bg-light" >
                                 {
                                     [Object.keys(data).pop()].concat(Object.keys(data).slice(0,2)).map((key, index) => {
 

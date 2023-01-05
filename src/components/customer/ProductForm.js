@@ -1,13 +1,14 @@
 import React, {useRef,useState} from "react";
 import AnchorTag from "../../components/Anchortag";
-import { useLiveQuery } from "dexie-react-hooks";
-import {db} from "../../data/db";
+// import {useNavigate} from "react-router-dom"
+
 import {  addToProducts, existingCategories } from "../../data/dbFunctions";
 
 
 const ProductForm =()=>{
     
     const [status, setStatus] = useState("");
+    // const navigate = useNavigate();
 
     const nameRef=useRef();
     const categoryRef=useRef();
@@ -61,7 +62,7 @@ const ProductForm =()=>{
                                 </select>
                             </div>
                             <div className="row m-3">
-                                    <button type="button" className="btn btn-secondary col-3" >Cancel</button>
+                                    <button type="button" className="btn btn-secondary col-3" onClick={()=>window.location.href="/app/shop/product/list"} >Cancel</button>
                                     <button type="button" className="btn btn-primary ml-4 col-3" onClick={()=> addProduct([nameRef.current.value,categoryRef.current.value,priceRef.current.value,stockRef.current.value])} >
                                             Submit
                                             </button>

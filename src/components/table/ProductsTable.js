@@ -21,7 +21,7 @@ const ProductsTable=(props)=>{
                        
                        props.products.map((data, index) => {
                             return (
-                            <tr key={index} className="table-row" >
+                            <tr key={index} className="table-row bg-light" >
                                 {
                                     [Object.keys(data).pop()].concat(Object.keys(data).slice(0,4)).map((key, index) => {
 

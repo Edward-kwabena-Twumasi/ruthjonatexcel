@@ -11,12 +11,9 @@ import { AiOutlineDelete } from "react-icons/ai";
 
 
 
-const InvoicesTable=(props)=>{
-    
+const InvoicesTable=(props)=>{  
 
       const remove=removeInvoice
-
-    
         return (
             
             <table className={props.className} >
@@ -26,7 +23,7 @@ const InvoicesTable=(props)=>{
                        
                       props.invoices.map((data, index) => {
                             return (
-                            <tr key={index} className="table-row" >
+                            <tr key={index} className="table-row bg-light" >
                                 {
                                     [Object.keys(data).pop()].concat(Object.keys(data).slice(0,5)).map((key, index) => {
 

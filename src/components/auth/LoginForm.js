@@ -8,9 +8,6 @@ class LoginForm extends Component{
         return (
             <div className="form mx-auto ">
                 <form className="">
-                    <div className="form-group form-title hidden">
-                        <h4 className="text-center pb-3 styled-header">Login</h4>
-                    </div>
                    
                     <div className="form-group">
                         <label>Email</label>
@@ -23,12 +20,12 @@ class LoginForm extends Component{
                     <div className="form-group">
                     <Link to="/app/dashboard" className="text-light"><button className="btn btn-primary w-100 mt-2">Login</button></Link>
                     </div>
-                    <div className=" font-weight-normal">
+                    {/* <div className=" font-weight-normal">
                         <p>Forgot password? <Link to="/password-reset-account-verify " >Click to Reset</Link></p>
                     </div>
                     <div className=" font-weight-normal">
                         <p>New user? <Link to="/registration " className=" ">Click to Register</Link></p>
-                    </div>
+                    </div> */}
                 </form>
             </div>
         )

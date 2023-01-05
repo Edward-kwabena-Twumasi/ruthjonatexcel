@@ -20,7 +20,6 @@ class CustomerRootPage extends Component{
                 <div className="w-100 bg-light">
                     <HeaderNavBar></HeaderNavBar>
                     <div className="root-page  p-4 container-fluid ">
-                        <div className="container-fluid page-body">
                             <div className="row  container-fluid">
                                 <div className=" sidenav">
                                     <div className=" side-navigation">
@@ -41,7 +40,7 @@ class CustomerRootPage extends Component{
                                     
                                 </div>
                             </div>
-                        </div>
+                        
                     </div>
                 </div>
         ) 

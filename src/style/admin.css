@@ -7,17 +7,42 @@
 }
 .root-page{
     width: 100%;
+    height: 85vh;
+    overflow: scroll;
 }
 .body{
-    height: 80vh;
+    height: 85vh;
+}
+.contact-dev{
+    font-size: 18px;
+    color: green;
+    display: flex;
+    flex-direction: row;
+    gap: 9px;
+    width: 100%;
+    justify-content: center;
+    padding-right: 20px;
+    align-items: center;
+}
+.contact-dev a{
+    font-size: 30px;
+    color: green;
+    margin-left: 9px;
 }
 .footer{
-    height: 20vh;
+    height: 15vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 5px;
+    position: absolute;
+    width: 100vw;
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0px 3px 3px 0px rgba(10, 10, 10, 0.2);
+
+
+    /* background-color: green; */
 }
 .footer .cr{
     margin: 10px;
@@ -38,7 +63,7 @@
 .sidenav{
     width: 15%;
     border-radius: 5px;
-    height: 700px;
+    height: 100%;
     padding-top: 20px;
 }
 .top-nav{
@@ -63,7 +88,7 @@
     margin: 2px;
     padding: 15px;
     box-shadow: 0px 3px 3px 0px rgba(10, 10, 10, 0.2);
-    height: 800px;
+    height: 100%;
 }
 
 .invoice-form{

@@ -6,6 +6,8 @@ import NotFoundPage from "./pages/NotFound";
 import AuthPage from "./pages/AuthPage";
 import RootPage from "./pages/admin/RootPage";
 import CustomerRootPage from "./pages/customer/RootPage";
+import { FaGithub, FaGlobe, FaGoogle, FaLinkedin, FaPhone, FaTwitter, FaWeebly } from "react-icons/fa";
+
 
 
 function App() {
@@ -27,10 +29,16 @@ function App() {
             </Switch>
           </Router>
         </div>      
-        <div className='footer bg-light d-flex flex-col'>
-        <div></div>
-          <div className='cr'>
-          <h5 >Copyright ©  2010-2023 Samsoft Rx. All rights reserved.</h5>
+        <div className='footer  d-flex flex-col'>
+        <div className='contact-dev'>
+          <a target={"blank"} href="https://edward-io.onrender.com"  className="">{<FaGlobe/>}</a > 
+          <a target={"blank"} href="mailto:createdliving1000@gmail.com"  className=" ">{<FaGoogle/>}</a >
+          <a target={"blank"} href="tel:+233 552489602"  className="">{<FaPhone/>}</a >
+          <a target={"blank"} href="https://twitter.com/EdwardsTwums"  className="">{<FaTwitter/>}</a > 
+
+        </div>
+          <div className='cr font-weight-light'>
+          <h5 >Copyright © 2023 <span className='font-weight-bold'>Samsoft Rx</span> . All rights reserved.</h5>
           </div>
          
           
