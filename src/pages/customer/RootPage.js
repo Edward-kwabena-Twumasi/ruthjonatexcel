@@ -19,8 +19,7 @@ class CustomerRootPage extends Component{
         return (
                 <div className="w-100 bg-light">
                     <HeaderNavBar></HeaderNavBar>
-                    <div className="root-page  p-4 container-fluid ">
-                            <div className="row  container-fluid">
+                    <div className="root-page   container-fluid ">
                                 <div className=" sidenav">
                                     <div className=" side-navigation">
                                         <AnchorTag link={`${this.props.match.path}/dashboard`} liClassName="" className="nav-item" itemValue="Dashboard"></AnchorTag>
@@ -39,7 +38,7 @@ class CustomerRootPage extends Component{
                                     </Switch>
                                     
                                 </div>
-                            </div>
+                           
                         
                     </div>
                 </div>
