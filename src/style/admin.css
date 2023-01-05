@@ -1,5 +1,38 @@
+.App{
+    height: 100vh;
+    background-image: url("../images/stock-management.webp");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 .root-page{
     width: 100%;
+}
+.body{
+    height: 80vh;
+}
+.footer{
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+.footer .cr{
+    margin: 10px;
+    padding: 10px;
+    border-top: 2px solid green;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    
+}
+.cr h5{
+    font-size: 15px;
+    align-self: center;
+    color: green;
 }
 
 .sidenav{
@@ -90,6 +123,99 @@ input{
     padding: 10px;
 }
 
+.form{
+    padding: 30px ;
+    width: 400px;
+
+    border-radius: 10px;
+    /* box-shadow: 0px 4px 4px 0px rgba(10, 10, 10, 0.2); */
+    align-self: center;
+    color: green;
+    font-weight: bold;
+
+}
+.auth-screen{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.4);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+}
+.sm-text{
+    
+    display: none;
+}
+
+@media (max-width: 640px) {
+    .form{
+       
+        width: 90vw;
+    
+    }
+    .sm-text{
+        display: block; 
+    }
+    
+    .intro{
+        width: 100vw;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        visibility: hidden;
+        
+    }
+    .intro-text{
+        background-color: black;
+        padding: 6px;
+        font-size: 10px;
+        font-weight: bold;
+        width: 100vw;
+        text-align: start;
+        opacity: 0;
+        position: absolute;
+        border-radius: 10px;
+     }
+}
+.styled-header{
+    font-weight: bold;
+    font-family: serif;
+}
+.intro{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.intro-text{
+    padding: 6px;
+    font-size: 30px;
+    font-weight: bold;
+    width: 30vw;
+    text-align: center;
+    opacity: 0;
+    position: absolute;
+    background-color: white;
+    border-radius: 10px;
+ }
+
+ .show-text{
+    opacity: 1;
+    animation: animate 200ms;
+ }
+ @keyframes animate {
+    from{
+        transform: scale(0.9);
+    }
+    to{
+        transform: scale(1.0);
+    }
+ }
 .searchResults{
 background-color: white;
 border-radius: 10px;

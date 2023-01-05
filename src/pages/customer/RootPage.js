@@ -17,7 +17,7 @@ class CustomerRootPage extends Component{
 
     render(){
         return (
-                <div>
+                <div className="w-100 bg-light">
                     <HeaderNavBar></HeaderNavBar>
                     <div className="root-page  p-4 container-fluid ">
                         <div className="container-fluid page-body">

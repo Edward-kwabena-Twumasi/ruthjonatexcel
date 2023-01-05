@@ -6,26 +6,18 @@ class RegistrationForm extends Component{
 
     render(){
         return (
-            <div className="auth mx-auto">
+            <div className="form mx-auto">
                 <form className="">
                     <div className="form-group">
-                        <h3 className="text-center pb-3">User Registration</h3>
-                    </div>
-                    <div className="form-group">
-                        <label>First Name</label>
-                        <input type="text" className="form-control" id="username"/>
-                    </div>
-                    <div className="form-group">
-                        <label>Last Name</label>
-                        <input type="text" className="form-control" id="username"/>
+                        <h3 className="text-center pb-3 styled-header">Register</h3>
                     </div>
                     <div className="form-group">
                         <label>Email</label>
-                        <input type="text" className="form-control" id="username"/>
+                        <input type="text" className="form-control nice-border" id="username"/>
                     </div>
                     <div className="form-group">
                         <label>Password</label>
-                        <input type="password" className="form-control" id="username"/>
+                        <input type="password" className="form-control nice-border" id="username"/>
                     </div>
                     <div className="form-group form-check">
                         <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
