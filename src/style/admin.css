@@ -180,8 +180,12 @@ input{
 
 
 @media (max-width: 575.98px) {
-    .sidenav{
-        display: none;
+    .sidenav {
+      transform: translateX(-200%);
+      position: absolute;
+    }
+    .nice-border{
+        width: 70vw;
     }
     .main-body{
         width: 100%;
@@ -191,7 +195,6 @@ input{
     .form{
        
         width: 90vw;
-    
     }
     .sm-text{
         display: block; 
