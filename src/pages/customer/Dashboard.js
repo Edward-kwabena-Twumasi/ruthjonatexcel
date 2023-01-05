@@ -40,19 +40,19 @@ const DashboardPage =()=>{
                     <div className="container-fluid dash-body">
                         <h5 className="mb-3 light">Summary</h5>
                         <div className="row summary">
-                            <div className="col-4 ">
+                            <div className="col-lg-4 col-sm-2 mb-2">
                                 <div className="dash-summary-cell card">
                                     <p className="card-title">All Products</p>
                                     <p className="display-count">{allProducts}</p>
                                 </div>
                             </div>
-                            <div className="col-4 ">
+                            <div className="col-lg-4 col-sm-2 mb-2">
                                 <div className="dash-summary-cell card">
                                     <p className="card-title">All Categories</p>
                                     <p className="display-count">{allCategories}</p>
                                 </div>
                             </div>
-                            <div className="col-4 ">
+                            <div className="col-lg-4 col-sm-2 mb-2">
                                 <div className="dash-summary-cell card">
                                     <p className="card-title">All invcoices</p>
                                     <p className="display-count">{allInvoices}</p>
@@ -61,7 +61,7 @@ const DashboardPage =()=>{
                         </div>
                         <h5 className="mt-3 light">Statistics</h5>
                         <div className="statistics">
-                        <div>Comprehensive statistics for shop...</div>
+                        <div>Comprehensive statistics...</div>
                         </div>
                     </div>
                 </div>
