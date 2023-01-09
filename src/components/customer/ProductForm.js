@@ -63,7 +63,9 @@ const ProductForm =()=>{
                             </div>
                             <div className="row m-3">
                                     <button type="button" className="btn btn-secondary col-3" onClick={()=>window.location.href="/app/shop/product/list"} >Cancel</button>
-                                    <button type="button" className="btn btn-primary ml-4 col-3" onClick={()=> addProduct([nameRef.current.value,categoryRef.current.value,priceRef.current.value,stockRef.current.value])} >
+                                    <button type="button" className="btn-outlined btn-primary ml-4 col-3" onClick={()=> {addProduct([nameRef.current.value,categoryRef.current.value,priceRef.current.value,stockRef.current.value]);
+                                    window.location.href="/app/shop/product/list"
+                                    }} >
                                             Submit
                                             </button>
                                 </div>
