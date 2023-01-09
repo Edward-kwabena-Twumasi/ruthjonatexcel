@@ -29,20 +29,17 @@ function App() {
             </Switch>
           </Router>
         </div>      
-        <div className='footer  d-flex flex-col'>
-        <div className='contact-dev'>
-          <a target={"blank"} href="https://edward-io.onrender.com"  className="">{<FaGlobe/>}</a > 
-          <a target={"blank"} href="mailto:createdliving1000@gmail.com"  className=" ">{<FaGoogle/>}</a >
-          <a target={"blank"} href="tel:+233 552489602"  className="">{<FaPhone/>}</a >
-          <a target={"blank"} href="https://twitter.com/EdwardsTwums"  className="">{<FaTwitter/>}</a > 
-
-        </div>
+        {/* <div className='footer  d-flex flex-col'>
+          <div className='contact-dev'>
+            <a target={"blank"} href="https://edward-io.onrender.com"  className="">{<FaGlobe/>}</a > 
+            <a target={"blank"} href="mailto:createdliving1000@gmail.com"  className=" ">{<FaGoogle/>}</a >
+            <a target={"blank"} href="tel:+233 552489602"  className="">{<FaPhone/>}</a >
+            <a target={"blank"} href="https://twitter.com/EdwardsTwums"  className="">{<FaTwitter/>}</a > 
+          </div>
           <div className='cr font-weight-light'>
           <h5 >Copyright © 2023 <span className='font-weight-bold'>Samsoft Rx</span> . All rights reserved.</h5>
-          </div>
-         
-          
-        </div>
+          </div>               
+        </div> */}
       </div>
     );
 }

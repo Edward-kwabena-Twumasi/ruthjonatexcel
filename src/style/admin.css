@@ -11,7 +11,7 @@
     overflow: scroll;
 }
 .body{
-    height: 85vh;
+    height: 10vh;
 }
 .contact-dev{
     font-size: 18px;
@@ -185,7 +185,7 @@ input{
       position: absolute;
     }
     .nice-border{
-        width: 70vw;
+        width: 85vw;
     }
     .main-body{
         width: 100%;
