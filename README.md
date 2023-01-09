@@ -1,35 +1,14 @@
-# Getting Started with Create React App
+## A stock taking Application
+This is an applicatin being developed to help a client manage inventory, get insignts about businees and help drive up revenue. Using the latest technologies availbale for both frontend and backend, this software seeks to become efficient, scalable and productive
 
+## Stack
+Node,
+React,
+C#,
+Typescript,
+Tailwind css,
+GraphQl,
+Docker,
+Aws
+etc.
 
-## Available URLs
-* For admin: `http://localhost:3000/admin/`
-* For customer: `http://localhost:3000`
-* Login: `http://localhost:3000/login`
-* Register: `http://localhost:3000/registration` 
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
